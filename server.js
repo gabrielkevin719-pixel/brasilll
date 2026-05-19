@@ -64,8 +64,8 @@ async function handlePixApi(req, res) {
     try {
       const { amount, productName, customerName, customerEmail, customerCpf } = JSON.parse(body);
       
-      const clientId = process.env.SYNCPAY_CLIENT_ID || '3859949a-26e5-4e26-931f-381f203eed15';
-      const clientSecret = process.env.SYNCPAY_CLIENT_SECRET || 'd3cdd8bb-299f-4f7c-9021-b3c2753f3a2f';
+      const clientId = (process.env.SYNCPAY_CLIENT_ID || '3859949a-26e5-4e26-931f-381f203eed15').trim();
+      const clientSecret = (process.env.SYNCPAY_CLIENT_SECRET || 'd3cdd8bb-299f-4f7c-9021-b3c2753f3a2f').trim();
       
       console.log('[v0] Using credentials - clientId:', clientId.substring(0, 8), 'clientSecret:', clientSecret.substring(0, 8));
       
@@ -191,5 +191,6 @@ const server = http.createServer((req, res) => {
 
 server.listen(PORT, () => {
   const address = server.address();
-  console.log(`Server running at http://localhost:${address.port}`);
+  console.log(`[v0] Server running at http://localhost:${address.port}`);
+  console.log('[v0] PIX API ready at /api/pix');
 });
