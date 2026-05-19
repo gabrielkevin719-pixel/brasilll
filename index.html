@@ -162,10 +162,20 @@
                 border-radius: 16px 16px 0 0;
                 width: 100%;
             }
-            .product-modal-grid {
-                grid-template-columns: 1fr !important;
-            }
-            .modal-close {
+  .product-modal-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .fixed-bottom-btn {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    padding: 12px 16px;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.15);
+    z-index: 100;
+  }
+  .modal-close {
                 top: 0.75rem;
                 right: 0.75rem;
                 width: 36px;
@@ -772,7 +782,7 @@
 
     <!-- Product Modal -->
     <div id="productModal" class="modal-overlay" onclick="if(event.target === this) closeAllModals()">
-        <div class="modal-content">
+        <div class="modal-content product-modal-mobile">
             <button class="modal-close" onclick="closeAllModals()">&times;</button>
             <div class="grid md:grid-cols-2 product-modal-grid" style="display: grid;">
                 <div class="p-4 md:p-6 bg-gray-50 relative">
@@ -794,25 +804,25 @@
                         </div>
                     </div>
                 </div>
-                <div class="p-6 md:p-8">
-                    <span id="modalProductBadge" class="inline-block bg-brasil-yellow text-ink px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest mb-4">Novo</span>
-                    <h2 id="modalProductName" class="font-display text-2xl md:text-3xl uppercase"></h2>
-                    <p id="modalProductDesc" class="mt-2 text-gray-600"></p>
+                <div class="p-4 md:p-8 pb-24 md:pb-8">
+                    <span id="modalProductBadge" class="inline-block bg-brasil-yellow text-ink px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest mb-3">Novo</span>
+                    <h2 id="modalProductName" class="font-display text-xl md:text-3xl uppercase"></h2>
+                    <p id="modalProductDesc" class="mt-2 text-gray-600 text-sm md:text-base"></p>
                     
-                    <div class="mt-6">
+                    <div class="mt-4 md:mt-6 hidden md:block">
                         <h4 class="font-bold text-sm mb-3">Detalhes do Produto</h4>
                         <ul class="space-y-2 text-sm text-gray-600">
                             <li class="flex items-center gap-2">
                                 <svg class="w-4 h-4 text-brasil-green" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                                Tecido Dry-Fit respirável de alta performance
+                                Tecido Dry-Fit respiravel de alta performance
                             </li>
                             <li class="flex items-center gap-2">
                                 <svg class="w-4 h-4 text-brasil-green" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                                Gola com acabamento premium reforçado
+                                Gola com acabamento premium reforcado
                             </li>
                             <li class="flex items-center gap-2">
                                 <svg class="w-4 h-4 text-brasil-green" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                                Escudo bordado em alta definição
+                                Escudo bordado em alta definicao
                             </li>
                             <li class="flex items-center gap-2">
                                 <svg class="w-4 h-4 text-brasil-green" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
@@ -820,12 +830,12 @@
                             </li>
                             <li class="flex items-center gap-2">
                                 <svg class="w-4 h-4 text-brasil-green" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                                Lavável à máquina sem deformação
+                                Lavavel a maquina sem deformacao
                             </li>
                         </ul>
                     </div>
 
-                    <div class="mt-6">
+                    <div class="mt-4 md:mt-6">
                         <label class="form-label">Tamanho <span>*</span></label>
                         <div class="flex flex-wrap gap-2" id="modalSizeSelector">
                             <button class="size-btn" data-size="P">P</button>
@@ -836,17 +846,24 @@
                         </div>
                     </div>
 
-                    <div class="mt-6">
+                    <div class="mt-4 md:mt-6">
                         <p class="text-sm text-gray-400 line-through" id="modalOldPrice"></p>
-                        <p class="font-display text-3xl" id="modalPrice"></p>
-                        <p class="text-sm text-gray-500">via PIX · Envio para todo Brasil</p>
+                        <p class="font-display text-2xl md:text-3xl" id="modalPrice"></p>
+                        <p class="text-xs md:text-sm text-gray-500">via PIX · Envio para todo Brasil</p>
                     </div>
 
-                    <button class="product-btn w-full mt-6 py-4 text-base flex items-center justify-center gap-2" onclick="proceedToCheckout()">
+                    <button class="product-btn w-full mt-4 md:mt-6 py-3 md:py-4 text-sm md:text-base flex items-center justify-center gap-2 hidden md:flex" onclick="proceedToCheckout()">
                         Comprar Agora
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 10a4 4 0 0 1-8 0"></path><path d="M3.103 6.034h17.794"></path><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"></path></svg>
                     </button>
                 </div>
+            </div>
+            <!-- Mobile Fixed Bottom Button -->
+            <div class="fixed-bottom-btn md:hidden">
+                <button class="product-btn w-full py-4 text-base flex items-center justify-center gap-2" onclick="proceedToCheckout()">
+                    Comprar Agora - <span id="modalPriceMobile">R$ 299,90</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 10a4 4 0 0 1-8 0"></path><path d="M3.103 6.034h17.794"></path><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"></path></svg>
+                </button>
             </div>
         </div>
     </div>
@@ -1883,6 +1900,12 @@
             document.getElementById('modalProductBadge').textContent = product.badge;
             document.getElementById('modalOldPrice').textContent = formatCurrency(product.oldPrice);
             document.getElementById('modalPrice').textContent = formatCurrency(product.price);
+            
+            // Update mobile price button
+            const mobilePriceEl = document.getElementById('modalPriceMobile');
+            if (mobilePriceEl) {
+                mobilePriceEl.textContent = formatCurrency(product.price);
+            }
             
             // Generate carousel dots
             const dotsContainer = document.getElementById('modalCarouselDots');
