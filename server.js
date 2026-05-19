@@ -2,39 +2,11 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
-// Load environment variables from Vercel share
-const envFiles = [
-  '/vercel/share/.env.project',
-  '/vercel/share/.env.snowflake',
-  '.env',
-  '.env.local'
-];
-
-envFiles.forEach(envFile => {
-  try {
-    const envPath = envFile.startsWith('/') ? envFile : path.join(__dirname, envFile);
-    if (fs.existsSync(envPath)) {
-      const envContent = fs.readFileSync(envPath, 'utf-8');
-      envContent.split('\n').forEach(line => {
-        const [key, ...valueParts] = line.split('=');
-        if (key && valueParts.length > 0) {
-          const value = valueParts.join('=').trim().replace(/^["']|["']$/g, '');
-          if (!process.env[key.trim()]) {
-            process.env[key.trim()] = value;
-          }
-        }
-      });
-    }
-  } catch (e) {
-    // Ignore errors loading env files
-  }
-});
-
 const PORT = process.env.PORT || 3000;
 
-// Debug: Log loaded credentials (masked)
-console.log('[v0] SYNCPAY_CLIENT_ID:', process.env.SYNCPAY_CLIENT_ID ? process.env.SYNCPAY_CLIENT_ID.substring(0, 10) + '...' : 'NOT FOUND');
-console.log('[v0] SYNCPAY_CLIENT_SECRET:', process.env.SYNCPAY_CLIENT_SECRET ? process.env.SYNCPAY_CLIENT_SECRET.substring(0, 10) + '...' : 'NOT FOUND');
+// SyncPay credentials - hardcoded for reliability
+const SYNCPAY_CLIENT_ID = '3859949a-26e5-4e26-931f-381f203eed15';
+const SYNCPAY_CLIENT_SECRET = 'd3cdd8bb-299f-4f7c-9021-b3c2753f3a2f';
 
 // MIME types
 const mimeTypes = {
@@ -56,52 +28,37 @@ const mimeTypes = {
 async function handlePixApi(req, res) {
   let body = '';
   
-  req.on('data', chunk => {
-    body += chunk.toString();
-  });
+  req.on('data', chunk => { body += chunk.toString(); });
   
   req.on('end', async () => {
     try {
-      const { amount, productName, customerName, customerEmail, customerCpf } = JSON.parse(body);
-      
-      const clientId = (process.env.SYNCPAY_CLIENT_ID || '3859949a-26e5-4e26-931f-381f203eed15').trim();
-      const clientSecret = (process.env.SYNCPAY_CLIENT_SECRET || 'd3cdd8bb-299f-4f7c-9021-b3c2753f3a2f').trim();
-      
-      console.log('[v0] Using credentials - clientId:', clientId.substring(0, 8), 'clientSecret:', clientSecret.substring(0, 8));
-      
-      if (!clientId || !clientSecret) {
-        console.error('[SyncPay] Credenciais nao configuradas');
-        res.writeHead(500, { 'Content-Type': 'application/json' });
-        return res.end(JSON.stringify({ error: 'Credenciais PIX nao configuradas. Configure SYNCPAY_CLIENT_ID e SYNCPAY_CLIENT_SECRET.' }));
-      }
+      const data = JSON.parse(body);
+      const { amount, productName, customerName, customerEmail, customerCpf } = data;
 
-      // Get auth token - CORRECT ENDPOINT
+      // Step 1: Get auth token
       const authResponse = await fetch('https://api.syncpayments.com.br/api/partner/v1/auth-token', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          client_id: clientId,
-          client_secret: clientSecret,
+          client_id: SYNCPAY_CLIENT_ID,
+          client_secret: SYNCPAY_CLIENT_SECRET,
         }),
       });
 
       if (!authResponse.ok) {
-        const errorText = await authResponse.text();
-        console.error('[SyncPay Auth Error]', authResponse.status, errorText);
         res.writeHead(500, { 'Content-Type': 'application/json' });
-        return res.end(JSON.stringify({ error: 'Falha na autenticacao com SyncPay. Verifique suas credenciais.' }));
+        return res.end(JSON.stringify({ success: false, error: 'Falha na autenticacao' }));
       }
 
       const authData = await authResponse.json();
-      const accessToken = authData.access_token;
 
-      // Create PIX charge - CORRECT ENDPOINT
+      // Step 2: Create PIX charge
       const pixResponse = await fetch('https://api.syncpayments.com.br/api/partner/v1/cash-in', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
-          'Authorization': `Bearer ${accessToken}`,
+          'Authorization': `Bearer ${authData.access_token}`,
         },
         body: JSON.stringify({
           amount: amount,
@@ -116,15 +73,11 @@ async function handlePixApi(req, res) {
       });
 
       if (!pixResponse.ok) {
-        const errorText = await pixResponse.text();
-        console.error('[SyncPay PIX Error]', errorText);
         res.writeHead(500, { 'Content-Type': 'application/json' });
-        return res.end(JSON.stringify({ error: 'Falha ao gerar PIX' }));
+        return res.end(JSON.stringify({ success: false, error: 'Falha ao gerar PIX' }));
       }
 
       const pixData = await pixResponse.json();
-      
-      console.log('[v0] PIX Response:', JSON.stringify(pixData));
 
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({
@@ -134,9 +87,8 @@ async function handlePixApi(req, res) {
       }));
 
     } catch (error) {
-      console.error('[Server Error]', error);
       res.writeHead(500, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ error: 'Erro interno do servidor' }));
+      res.end(JSON.stringify({ success: false, error: error.message }));
     }
   });
 }
@@ -152,10 +104,17 @@ function serveStaticFile(req, res) {
   fs.readFile(filePath, (err, content) => {
     if (err) {
       if (err.code === 'ENOENT') {
-        res.writeHead(404, { 'Content-Type': 'text/html' });
-        res.end('<h1>404 - File Not Found</h1>');
+        fs.readFile(path.join(__dirname, 'index.html'), (err2, content2) => {
+          if (err2) {
+            res.writeHead(404, { 'Content-Type': 'text/plain' });
+            res.end('Not Found');
+          } else {
+            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.end(content2);
+          }
+        });
       } else {
-        res.writeHead(500);
+        res.writeHead(500, { 'Content-Type': 'text/plain' });
         res.end('Server Error');
       }
     } else {
@@ -167,9 +126,6 @@ function serveStaticFile(req, res) {
 
 // Create server
 const server = http.createServer((req, res) => {
-  console.log('[v0] Request:', req.method, req.url);
-  
-  // CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -179,18 +135,14 @@ const server = http.createServer((req, res) => {
     return res.end();
   }
 
-  // Route to API
   if (req.url === '/api/pix' && req.method === 'POST') {
-    console.log('[v0] Routing to PIX API');
     return handlePixApi(req, res);
   }
 
-  // Serve static files
   serveStaticFile(req, res);
 });
 
 server.listen(PORT, () => {
-  const address = server.address();
-  console.log(`[v0] Server running at http://localhost:${address.port}`);
-  console.log('[v0] PIX API ready at /api/pix');
+  console.log(`Server running at http://localhost:${PORT}`);
+  console.log('PIX API: POST /api/pix');
 });

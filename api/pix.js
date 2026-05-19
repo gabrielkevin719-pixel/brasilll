@@ -1,5 +1,6 @@
+// Vercel Serverless Function for PIX API
 export default async function handler(req, res) {
-  // CORS headers
+  // CORS
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -12,37 +13,35 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
+  // Credentials
+  const CLIENT_ID = '3859949a-26e5-4e26-931f-381f203eed15';
+  const CLIENT_SECRET = 'd3cdd8bb-299f-4f7c-9021-b3c2753f3a2f';
+
   try {
     const { amount, productName, customerName, customerEmail, customerCpf } = req.body;
-    
-    // Credentials with fallback
-    const clientId = (process.env.SYNCPAY_CLIENT_ID || '3859949a-26e5-4e26-931f-381f203eed15').trim();
-    const clientSecret = (process.env.SYNCPAY_CLIENT_SECRET || 'd3cdd8bb-299f-4f7c-9021-b3c2753f3a2f').trim();
 
-    // Get auth token - CORRECT ENDPOINT
-    const authResponse = await fetch('https://api.syncpayments.com.br/api/partner/v1/auth-token', {
+    // Step 1: Auth
+    const authRes = await fetch('https://api.syncpayments.com.br/api/partner/v1/auth-token', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ client_id: clientId, client_secret: clientSecret }),
+      body: JSON.stringify({ client_id: CLIENT_ID, client_secret: CLIENT_SECRET }),
     });
 
-    if (!authResponse.ok) {
-      return res.status(500).json({ error: 'Falha na autenticacao com SyncPay' });
+    if (!authRes.ok) {
+      return res.status(500).json({ success: false, error: 'Falha na autenticacao' });
     }
 
-    const authData = await authResponse.json();
-    const accessToken = authData.access_token;
+    const { access_token } = await authRes.json();
 
-    // Create PIX charge - CORRECT ENDPOINT
-    const pixResponse = await fetch('https://api.syncpayments.com.br/api/partner/v1/cash-in', {
+    // Step 2: Create PIX
+    const pixRes = await fetch('https://api.syncpayments.com.br/api/partner/v1/cash-in', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': `Bearer ${accessToken}`,
+        'Authorization': `Bearer ${access_token}`,
       },
       body: JSON.stringify({
-        amount: amount,
+        amount,
         description: productName,
         client: {
           name: customerName,
@@ -53,19 +52,19 @@ export default async function handler(req, res) {
       }),
     });
 
-    if (!pixResponse.ok) {
-      const errorText = await pixResponse.text();
-      return res.status(500).json({ error: 'Falha ao gerar PIX: ' + errorText });
+    if (!pixRes.ok) {
+      return res.status(500).json({ success: false, error: 'Falha ao gerar PIX' });
     }
 
-    const pixData = await pixResponse.json();
+    const pixData = await pixRes.json();
 
     return res.status(200).json({
       success: true,
       pixCode: pixData.pix_code,
       transactionId: pixData.identifier,
     });
+
   } catch (error) {
-    return res.status(500).json({ error: error.message });
+    return res.status(500).json({ success: false, error: error.message });
   }
 }
