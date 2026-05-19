@@ -528,10 +528,35 @@
                     <h2 class="font-display text-5xl md:text-6xl uppercase mt-2">Lançamentos</h2>
                 </div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- Brasil Oficial 2026 -->
+                <article class="group">
+                    <div class="relative aspect-[4/5] overflow-hidden bg-muted border border-border group-hover:border-brasil-green transition-colors cursor-pointer" onclick="openProductModal('brasil-oficial-2026')">
+                        <img src="/assets/brasil-2026-model-1.jpg" alt="Brasil Oficial 2026" loading="lazy" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                        <span class="absolute top-3 left-3 bg-brasil-green text-canvas px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest">Lancamento 2026</span>
+                        <span class="absolute top-3 right-3 bg-brasil-yellow text-ink px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest">-22%</span>
+                    </div>
+                    <div class="mt-5">
+                        <div class="flex items-start justify-between gap-4">
+                            <div class="min-w-0">
+                                <h3 class="font-display text-xl uppercase tracking-tight truncate">Brasil Oficial 2026</h3>
+                                <p class="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mt-1 truncate">Amarelinha Copa do Mundo</p>
+                            </div>
+                            <div class="text-right shrink-0">
+                                <p class="text-xs text-muted-foreground line-through">R$ 449,90</p>
+                                <p class="font-display text-xl text-brasil-green">R$ 349,90</p>
+                            </div>
+                        </div>
+                        <div class="product-card-buttons">
+                            <button class="product-btn-outline flex-1" onclick="openProductModal('brasil-oficial-2026')">Ver Detalhes</button>
+                            <button class="product-btn flex-1 flex items-center justify-center gap-2" onclick="addToCartWithSize('brasil-oficial-2026')"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 10a4 4 0 0 1-8 0"/><path d="M3.103 6.034h17.794"/><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"/></svg>Adicionar</button>
+                        </div>
+                    </div>
+                </article>
+                
                 <!-- Product 1 -->
                 <article class="group">
-                    <div class="relative aspect-[4/5] overflow-hidden bg-muted border border-border group-hover:border-brasil-green transition-colors cursor-pointer" onclick="openProductModal('brasil-home-2024')">
+                <div class="relative aspect-[4/5] overflow-hidden bg-muted border border-border group-hover:border-brasil-green transition-colors cursor-pointer" onclick="openProductModal('brasil-home-2024')">
                         <img src="/assets/brasil-home-2024-1.jpg" alt="Brasil Home 2024/2025" loading="lazy" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
                         <span class="absolute top-3 left-3 bg-ink text-canvas px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest">Mais Vendida</span>
                         <span class="absolute top-3 right-3 bg-brasil-yellow text-ink px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest">-30%</span>
@@ -1303,6 +1328,16 @@
     <script>
         // Product data
         const products = {
+            'brasil-oficial-2026': {
+                id: 'brasil-oficial-2026',
+                name: 'Brasil Oficial 2026',
+                desc: 'A nova amarelinha para Copa do Mundo 2026. Tecido Dri-FIT, gola verde e detalhes em verde nas laterais.',
+                image: '/assets/brasil-2026-model-1.jpg',
+                images: ['/assets/brasil-2026-model-1.jpg', '/assets/brasil-2026-model-4.jpg', '/assets/brasil-2026-model-3.jpg', '/assets/brasil-2026-model-2.jpg', '/assets/brasil-2026-model-5.jpg', '/assets/brasil-2026-model-6.jpg'],
+                oldPrice: 449.90,
+                price: 349.90,
+                badge: 'Lancamento 2026'
+            },
             'brasil-home-2024': {
                 id: 'brasil-home-2024',
                 name: 'Brasil Home 2024/2025',
