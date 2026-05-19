@@ -751,9 +751,9 @@
                     <div>
                         <h4 class="font-mono text-[10px] font-bold uppercase tracking-widest text-brasil-yellow mb-4">Suporte</h4>
                         <ul class="space-y-2 text-sm text-canvas/70">
-                            <li><a href="#" class="hover:text-brasil-yellow">Envios</a></li>
-                            <li><a href="#" class="hover:text-brasil-yellow">Trocas</a></li>
-                            <li><a href="#" class="hover:text-brasil-yellow">Tabela de Medidas</a></li>
+                            <li><a href="#" onclick="openSupportModal('envios'); return false;" class="hover:text-brasil-yellow">Envios</a></li>
+                            <li><a href="#" onclick="openSupportModal('trocas'); return false;" class="hover:text-brasil-yellow">Trocas</a></li>
+                            <li><a href="#" onclick="openSupportModal('medidas'); return false;" class="hover:text-brasil-yellow">Tabela de Medidas</a></li>
                             <li><a href="#" class="hover:text-brasil-yellow">Contato</a></li>
                         </ul>
                     </div>
@@ -842,6 +842,202 @@
                         Comprar Agora
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 10a4 4 0 0 1-8 0"></path><path d="M3.103 6.034h17.794"></path><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"></path></svg>
                     </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Envios Modal -->
+    <div id="enviosModal" class="modal-overlay" onclick="if(event.target === this) closeAllModals()">
+        <div class="modal-content" style="max-width: 600px;">
+            <button class="modal-close" onclick="closeAllModals()">&times;</button>
+            <div class="p-6 md:p-8">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-12 h-12 bg-brasil-green rounded-full flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M5 18H3c-.6 0-1-.4-1-1V7c0-.6.4-1 1-1h10c.6 0 1 .4 1 1v11"/><path d="M14 9h4l4 4v4c0 .6-.4 1-1 1h-2"/><circle cx="7" cy="18" r="2"/><path d="M15 18H9"/><circle cx="17" cy="18" r="2"/></svg>
+                    </div>
+                    <div>
+                        <h3 class="font-display text-2xl uppercase">Envios</h3>
+                        <p class="text-sm text-muted-foreground">Informacoes sobre entrega</p>
+                    </div>
+                </div>
+                
+                <div class="space-y-6">
+                    <div class="bg-brasil-yellow/10 border border-brasil-yellow/30 rounded-lg p-4">
+                        <h4 class="font-bold text-brasil-green mb-2">Frete Gratis</h4>
+                        <p class="text-sm text-muted-foreground">Para compras acima de R$ 299,90 em todo o Brasil!</p>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-lg">
+                            <div class="w-10 h-10 bg-ink rounded flex items-center justify-center flex-shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect width="16" height="13" x="6" y="4" rx="2"/><path d="m22 7-7.1 3.78c-.57.3-1.23.3-1.8 0L6 7"/><path d="M2 8v11c0 1.1.9 2 2 2h14"/></svg>
+                            </div>
+                            <div>
+                                <h5 class="font-bold">PAC - Correios</h5>
+                                <p class="text-sm text-muted-foreground">5 a 12 dias uteis</p>
+                                <p class="text-sm font-medium text-brasil-green mt-1">A partir de R$ 19,90</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-lg">
+                            <div class="w-10 h-10 bg-ink rounded flex items-center justify-center flex-shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1"/><polygon points="12 15 17 21 7 21 12 15"/></svg>
+                            </div>
+                            <div>
+                                <h5 class="font-bold">SEDEX - Correios</h5>
+                                <p class="text-sm text-muted-foreground">2 a 5 dias uteis</p>
+                                <p class="text-sm font-medium text-brasil-green mt-1">A partir de R$ 29,90</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-lg">
+                            <div class="w-10 h-10 bg-brasil-green rounded flex items-center justify-center flex-shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
+                            </div>
+                            <div>
+                                <h5 class="font-bold">Entrega Expressa</h5>
+                                <p class="text-sm text-muted-foreground">1 a 2 dias uteis (capitais)</p>
+                                <p class="text-sm font-medium text-brasil-green mt-1">A partir de R$ 49,90</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="border-t pt-4">
+                        <p class="text-xs text-muted-foreground">* Prazos contados a partir da confirmacao do pagamento. O codigo de rastreio sera enviado por e-mail assim que o pedido for despachado.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Trocas Modal -->
+    <div id="trocasModal" class="modal-overlay" onclick="if(event.target === this) closeAllModals()">
+        <div class="modal-content" style="max-width: 600px;">
+            <button class="modal-close" onclick="closeAllModals()">&times;</button>
+            <div class="p-6 md:p-8">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-12 h-12 bg-brasil-green rounded-full flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M16 3h5v5"/><path d="M8 3H3v5"/><path d="M12 22v-8.3a4 4 0 0 0-1.172-2.872L3 3"/><path d="m15 9 6-6"/></svg>
+                    </div>
+                    <div>
+                        <h3 class="font-display text-2xl uppercase">Trocas e Devolucoes</h3>
+                        <p class="text-sm text-muted-foreground">Politica de trocas</p>
+                    </div>
+                </div>
+                
+                <div class="space-y-6">
+                    <div class="bg-brasil-green/10 border border-brasil-green/30 rounded-lg p-4">
+                        <h4 class="font-bold text-brasil-green mb-2">30 Dias para Trocar</h4>
+                        <p class="text-sm text-muted-foreground">Sua satisfacao e nossa prioridade. Troque ou devolva em ate 30 dias!</p>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-brasil-yellow pl-4">
+                            <h5 class="font-bold mb-1">Troca por Tamanho</h5>
+                            <p class="text-sm text-muted-foreground">Escolheu o tamanho errado? Fique tranquilo! A primeira troca por tamanho e gratuita.</p>
+                        </div>
+                        
+                        <div class="border-l-4 border-brasil-yellow pl-4">
+                            <h5 class="font-bold mb-1">Produto com Defeito</h5>
+                            <p class="text-sm text-muted-foreground">Identificou algum defeito? Entre em contato imediatamente. Cobrimos todos os custos de envio e troca.</p>
+                        </div>
+                        
+                        <div class="border-l-4 border-brasil-yellow pl-4">
+                            <h5 class="font-bold mb-1">Devolucao</h5>
+                            <p class="text-sm text-muted-foreground">Nao gostou? Devolva o produto sem uso, com etiquetas, na embalagem original. Reembolso em ate 7 dias uteis.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-lg p-4">
+                        <h5 class="font-bold mb-3">Como Solicitar:</h5>
+                        <ol class="text-sm text-muted-foreground space-y-2">
+                            <li class="flex gap-2"><span class="font-bold text-brasil-green">1.</span> Envie um e-mail para trocas@camisasdobrasil.com</li>
+                            <li class="flex gap-2"><span class="font-bold text-brasil-green">2.</span> Informe o numero do pedido e motivo da troca</li>
+                            <li class="flex gap-2"><span class="font-bold text-brasil-green">3.</span> Aguarde as instrucoes de envio</li>
+                            <li class="flex gap-2"><span class="font-bold text-brasil-green">4.</span> Envie o produto e acompanhe o processo</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tabela de Medidas Modal -->
+    <div id="medidasModal" class="modal-overlay" onclick="if(event.target === this) closeAllModals()">
+        <div class="modal-content" style="max-width: 700px;">
+            <button class="modal-close" onclick="closeAllModals()">&times;</button>
+            <div class="p-6 md:p-8">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-12 h-12 bg-brasil-green rounded-full flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z"/><path d="m14.5 12.5 2-2"/><path d="m11.5 9.5 2-2"/><path d="m8.5 6.5 2-2"/><path d="m17.5 15.5 2-2"/></svg>
+                    </div>
+                    <div>
+                        <h3 class="font-display text-2xl uppercase">Tabela de Medidas</h3>
+                        <p class="text-sm text-muted-foreground">Encontre o tamanho ideal</p>
+                    </div>
+                </div>
+                
+                <div class="space-y-6">
+                    <div class="bg-brasil-yellow/10 border border-brasil-yellow/30 rounded-lg p-4">
+                        <p class="text-sm"><strong>Dica:</strong> Se estiver em duvida entre dois tamanhos, recomendamos escolher o maior para um caimento mais confortavel.</p>
+                    </div>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead>
+                                <tr class="bg-ink text-canvas">
+                                    <th class="px-4 py-3 text-left font-bold">Tamanho</th>
+                                    <th class="px-4 py-3 text-center font-bold">Largura (cm)</th>
+                                    <th class="px-4 py-3 text-center font-bold">Comprimento (cm)</th>
+                                    <th class="px-4 py-3 text-center font-bold">Manga (cm)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b">
+                                    <td class="px-4 py-3 font-bold">P</td>
+                                    <td class="px-4 py-3 text-center">48</td>
+                                    <td class="px-4 py-3 text-center">68</td>
+                                    <td class="px-4 py-3 text-center">20</td>
+                                </tr>
+                                <tr class="border-b bg-gray-50">
+                                    <td class="px-4 py-3 font-bold">M</td>
+                                    <td class="px-4 py-3 text-center">52</td>
+                                    <td class="px-4 py-3 text-center">70</td>
+                                    <td class="px-4 py-3 text-center">21</td>
+                                </tr>
+                                <tr class="border-b">
+                                    <td class="px-4 py-3 font-bold">G</td>
+                                    <td class="px-4 py-3 text-center">56</td>
+                                    <td class="px-4 py-3 text-center">72</td>
+                                    <td class="px-4 py-3 text-center">22</td>
+                                </tr>
+                                <tr class="border-b bg-gray-50">
+                                    <td class="px-4 py-3 font-bold">GG</td>
+                                    <td class="px-4 py-3 text-center">60</td>
+                                    <td class="px-4 py-3 text-center">74</td>
+                                    <td class="px-4 py-3 text-center">23</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3 font-bold">XGG</td>
+                                    <td class="px-4 py-3 text-center">64</td>
+                                    <td class="px-4 py-3 text-center">76</td>
+                                    <td class="px-4 py-3 text-center">24</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-gray-50 rounded-lg p-4">
+                            <h5 class="font-bold mb-2">Como Medir - Largura</h5>
+                            <p class="text-xs text-muted-foreground">Meca de uma axila a outra com a camisa esticada sobre uma superficie plana.</p>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-4">
+                            <h5 class="font-bold mb-2">Como Medir - Comprimento</h5>
+                            <p class="text-xs text-muted-foreground">Meca da base da gola ate a barra inferior da camisa.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1381,6 +1577,18 @@
             document.querySelectorAll('.modal-overlay').forEach(modal => {
                 modal.classList.remove('active');
             });
+        }
+        
+        // Support Modals
+        function openSupportModal(type) {
+            closeAllModals();
+            if (type === 'envios') {
+                document.getElementById('enviosModal').classList.add('active');
+            } else if (type === 'trocas') {
+                document.getElementById('trocasModal').classList.add('active');
+            } else if (type === 'medidas') {
+                document.getElementById('medidasModal').classList.add('active');
+            }
         }
         
         // Auth Modal Functions
