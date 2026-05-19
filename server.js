@@ -165,6 +165,8 @@ function serveStaticFile(req, res) {
 
 // Create server
 const server = http.createServer((req, res) => {
+  console.log('[v0] Request:', req.method, req.url);
+  
   // CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
@@ -177,6 +179,7 @@ const server = http.createServer((req, res) => {
 
   // Route to API
   if (req.url === '/api/pix' && req.method === 'POST') {
+    console.log('[v0] Routing to PIX API');
     return handlePixApi(req, res);
   }
 
