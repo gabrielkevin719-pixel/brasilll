@@ -326,21 +326,28 @@
         
         <!-- Desktop Header -->
         <header class="desktop-header sticky top-0 z-50 border-b border-border bg-canvas/85 backdrop-blur-md">
-            <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-                <a class="font-display text-2xl uppercase tracking-tighter italic active" href="/" aria-current="page">Camisas do Brasil</a>
-                <nav class="hidden md:flex items-center gap-8 text-xs font-bold uppercase tracking-widest">
-                    <a class="hover:text-brasil-green transition-colors text-brasil-green" href="/" aria-current="page">Inicio</a>
-                    <a href="#lancamentos" class="hover:text-brasil-green transition-colors">Oficial</a>
-                    <a href="#retro" class="hover:text-brasil-green transition-colors">Retro</a>
-                </nav>
-                <div class="flex items-center gap-3">
-                    <button id="desktopAuthBtn" onclick="openAuthModal()" class="text-xs font-bold uppercase tracking-widest hover:text-brasil-green transition-colors">Entrar</button>
-                    <span class="text-gray-300">|</span>
-                    <button onclick="openAuthModal(); setTimeout(() => showAuthTab('register'), 100);" class="text-xs font-bold uppercase tracking-widest hover:text-brasil-green transition-colors">Criar Conta</button>
-                    <button id="cartBtn" aria-label="Sacola" class="flex items-center gap-2 bg-ink text-canvas px-4 py-2 text-[10px] font-bold uppercase tracking-widest hover:bg-brasil-green transition-colors ml-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-3.5"><path d="M16 10a4 4 0 0 1-8 0"></path><path d="M3.103 6.034h17.794"></path><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"></path></svg>
-                        Sacola (<span id="cartCount">0</span>)
-                    </button>
+            <div class="mx-auto max-w-7xl px-6 py-4">
+                <div class="flex items-center justify-between gap-8">
+                    <!-- Logo -->
+                    <a class="font-display text-xl uppercase tracking-tighter italic flex-shrink-0" href="/" aria-current="page">Camisas do Brasil</a>
+                    
+                    <!-- Navigation -->
+                    <nav class="hidden md:flex items-center gap-8 text-xs font-bold uppercase tracking-widest">
+                        <a class="hover:text-brasil-green transition-colors text-brasil-green" href="/" aria-current="page">Inicio</a>
+                        <a href="#lancamentos" class="hover:text-brasil-green transition-colors">Oficial</a>
+                        <a href="#retro" class="hover:text-brasil-green transition-colors">Retro</a>
+                    </nav>
+                    
+                    <!-- Auth & Cart -->
+                    <div class="flex items-center gap-4 flex-shrink-0">
+                        <button id="desktopAuthBtn" onclick="openAuthModal()" class="text-xs font-bold uppercase tracking-widest hover:text-brasil-green transition-colors hidden md:block">Entrar</button>
+                        <span class="text-gray-300 hidden md:block">|</span>
+                        <button id="desktopCreateBtn" onclick="openAuthModal(); setTimeout(() => showAuthTab('register'), 100);" class="text-xs font-bold uppercase tracking-widest hover:text-brasil-green transition-colors hidden md:block">Criar Conta</button>
+                        <button id="cartBtn" aria-label="Sacola" class="flex items-center gap-2 bg-ink text-canvas px-4 py-2 text-[10px] font-bold uppercase tracking-widest hover:bg-brasil-green transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 10a4 4 0 0 1-8 0"></path><path d="M3.103 6.034h17.794"></path><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"></path></svg>
+                            Sacola (<span id="cartCount">0</span>)
+                        </button>
+                    </div>
                 </div>
             </div>
         </header>
@@ -1257,7 +1264,7 @@
             
             // Update desktop header buttons
             const desktopAuthBtn = document.getElementById('desktopAuthBtn');
-            const createAccountBtn = desktopAuthBtn ? desktopAuthBtn.nextElementSibling.nextElementSibling : null;
+            const createAccountBtn = document.getElementById('desktopCreateBtn');
             const separator = desktopAuthBtn ? desktopAuthBtn.nextElementSibling : null;
             
             if (desktopAuthBtn) {
