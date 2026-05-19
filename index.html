@@ -13,6 +13,7 @@
     <link rel="icon" href="/favicon.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
     <style>
         /* Modal styles */
         .modal-overlay {
@@ -1485,9 +1486,9 @@
                 <!-- QR Code Card -->
                 <div class="bg-[#f5f0e8] rounded-2xl p-6 mb-6">
                     <div class="bg-white rounded-xl p-4 mx-auto w-fit shadow-sm">
-                        <div id="qrCodeContainer" class="w-44 h-44 flex items-center justify-center">
-                            <svg id="qrCodeSvg" viewBox="0 0 100 100" class="w-full h-full"></svg>
-                        </div>
+<div id="qrCodeContainer" class="w-44 h-44 flex items-center justify-center">
+  <canvas id="qrCodeCanvas"></canvas>
+  </div>
                     </div>
                     <p class="text-center text-sm text-gray-600 mt-4">Escaneie o QR Code com o app do seu banco</p>
                 </div>
@@ -2187,8 +2188,18 @@
                 document.getElementById('pixProductImage').src = currentProduct.images[0];
                 document.getElementById('pixProductDesc').textContent = currentProduct.name + ' — Tam. ' + selectedSize;
                 
-                // Generate QR pattern (demo mode always uses generated pattern)
-                generateQRPattern();
+                // Generate real QR code from PIX code
+                const qrCanvas = document.getElementById('qrCodeCanvas');
+                qrCanvas.innerHTML = '';
+                if (typeof QRCode !== 'undefined' && pixCode) {
+                    QRCode.toCanvas(qrCanvas, pixCode, { 
+                        width: 176,
+                        margin: 1,
+                        color: { dark: '#000000', light: '#ffffff' }
+                    }, function(error) {
+                        if (error) console.error('[v0] QR Error:', error);
+                    });
+                }
                 
                 // Save order to user account
                 saveOrder(currentProduct, selectedSize, total, pixCode);
