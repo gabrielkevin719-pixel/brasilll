@@ -1,6 +1,8 @@
 {
   "outputDirectory": ".",
-  "rewrites": [
-    { "source": "/api/pix", "destination": "/api/pix.js" }
-  ]
+  "functions": {
+    "api/*.js": {
+      "runtime": "@vercel/node@3"
+    }
+  }
 }
