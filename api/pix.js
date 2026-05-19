@@ -1,7 +1,10 @@
-export async function POST(request) {
+export default async function handler(req, res) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
+
   try {
-    const body = await request.json();
-    const { amount, productName, customerName, customerEmail, customerCpf } = body;
+    const { amount, productName, customerName, customerEmail, customerCpf } = req.body;
 
     // Get auth token
     const authResponse = await fetch('https://api.syncpayments.com.br/auth/oauth/token', {
@@ -18,7 +21,7 @@ export async function POST(request) {
     if (!authResponse.ok) {
       const errorText = await authResponse.text();
       console.error('[SyncPay Auth Error]', errorText);
-      return Response.json({ error: 'Falha na autenticacao' }, { status: 500 });
+      return res.status(500).json({ error: 'Falha na autenticacao' });
     }
 
     const authData = await authResponse.json();
@@ -46,12 +49,12 @@ export async function POST(request) {
     if (!pixResponse.ok) {
       const errorText = await pixResponse.text();
       console.error('[SyncPay PIX Error]', errorText);
-      return Response.json({ error: 'Falha ao gerar PIX' }, { status: 500 });
+      return res.status(500).json({ error: 'Falha ao gerar PIX' });
     }
 
     const pixData = await pixResponse.json();
 
-    return Response.json({
+    return res.status(200).json({
       success: true,
       qrCode: pixData.qr_code || pixData.qrcode,
       qrCodeBase64: pixData.qr_code_base64 || pixData.qrcode_base64,
@@ -62,6 +65,6 @@ export async function POST(request) {
 
   } catch (error) {
     console.error('[SyncPay Error]', error);
-    return Response.json({ error: 'Erro interno do servidor' }, { status: 500 });
+    return res.status(500).json({ error: 'Erro interno do servidor' });
   }
 }
