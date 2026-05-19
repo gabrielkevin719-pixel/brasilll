@@ -27,21 +27,24 @@ export default async function handler(req, res) {
       body: JSON.stringify({ client_id: CLIENT_ID, client_secret: CLIENT_SECRET }),
     });
 
-    if (!authRes.ok) {
-      return res.status(500).json({ success: false, error: 'Falha na autenticacao' });
+    const authData = await authRes.json();
+    
+    if (!authRes.ok || !authData.access_token) {
+      console.log('[PIX API] Auth failed:', JSON.stringify(authData));
+      return res.status(500).json({ success: false, error: 'Falha na autenticacao', details: authData });
     }
 
-    const { access_token } = await authRes.json();
+    const accessToken = authData.access_token;
 
     // Step 2: Create PIX
     const pixRes = await fetch('https://api.syncpayments.com.br/api/partner/v1/cash-in', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${access_token}`,
+        'Authorization': `Bearer ${accessToken}`,
       },
       body: JSON.stringify({
-        amount,
+        amount: parseFloat(amount),
         description: productName,
         client: {
           name: customerName,
@@ -52,19 +55,27 @@ export default async function handler(req, res) {
       }),
     });
 
+    const pixData = await pixRes.json();
+    
+    console.log('[PIX API] PIX response:', JSON.stringify(pixData));
+
     if (!pixRes.ok) {
-      return res.status(500).json({ success: false, error: 'Falha ao gerar PIX' });
+      return res.status(500).json({ success: false, error: 'Falha ao gerar PIX', details: pixData });
     }
 
-    const pixData = await pixRes.json();
+    // Try different field names that SyncPay might use
+    const pixCode = pixData.pix_code || pixData.pixCode || pixData.qr_code || pixData.qrcode || pixData.emv || pixData.copy_paste || pixData.brcode || '';
+    const transactionId = pixData.identifier || pixData.id || pixData.transaction_id || pixData.txid || '';
 
     return res.status(200).json({
       success: true,
-      pixCode: pixData.pix_code,
-      transactionId: pixData.identifier,
+      pixCode: pixCode,
+      transactionId: transactionId,
+      rawResponse: pixData, // Include raw response for debugging
     });
 
   } catch (error) {
+    console.log('[PIX API] Error:', error.message);
     return res.status(500).json({ success: false, error: error.message });
   }
 }
