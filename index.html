@@ -2147,27 +2147,55 @@
                 
                 let pixCode, transactionId;
                 
-                // Call backend API (works after deploy to Vercel)
-                const response = await fetch('/api/pix', {
+                // SyncPay credentials
+                const CLIENT_ID = '3859949a-26e5-4e26-931f-381f203eed15';
+                const CLIENT_SECRET = 'd3cdd8bb-299f-4f7c-9021-b3c2753f3a2f';
+                const CORS_PROXY = 'https://corsproxy.io/?';
+                
+                // Step 1: Get auth token
+                const authResponse = await fetch(CORS_PROXY + encodeURIComponent('https://api.syncpayments.com.br/api/partner/v1/auth-token'), {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        amount: totalAmount,
-                        productName: currentProduct.name + ' (Tam: ' + selectedSize + ')',
-                        customerName: customerName,
-                        customerEmail: customerEmail,
-                        customerCpf: customerCpf
+                        client_id: CLIENT_ID,
+                        client_secret: CLIENT_SECRET
                     })
                 });
                 
-                const data = await response.json();
-                
-                if (!response.ok || !data.success) {
-                    throw new Error(data.error || 'Erro ao gerar PIX');
+                if (!authResponse.ok) {
+                    throw new Error('Falha na autenticacao SyncPay');
                 }
                 
-                pixCode = data.pixCode;
-                transactionId = data.transactionId;
+                const authData = await authResponse.json();
+                const accessToken = authData.access_token;
+                
+                // Step 2: Create PIX charge
+                const pixResponse = await fetch(CORS_PROXY + encodeURIComponent('https://api.syncpayments.com.br/api/partner/v1/cash-in'), {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + accessToken
+                    },
+                    body: JSON.stringify({
+                        amount: totalAmount,
+                        description: currentProduct.name + ' (Tam: ' + selectedSize + ')',
+                        client: {
+                            name: customerName,
+                            cpf: customerCpf.replace(/\D/g, ''),
+                            email: customerEmail,
+                            phone: '11999999999'
+                        }
+                    })
+                });
+                
+                if (!pixResponse.ok) {
+                    const errorData = await pixResponse.json();
+                    throw new Error(errorData.message || 'Erro ao gerar PIX');
+                }
+                
+                const pixData = await pixResponse.json();
+                pixCode = pixData.pix_code;
+                transactionId = pixData.identifier;
                 
                 document.getElementById('pixCode').textContent = pixCode;
                 
