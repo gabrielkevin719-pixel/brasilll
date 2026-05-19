@@ -2,6 +2,34 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
+// Load environment variables from Vercel share
+const envFiles = [
+  '/vercel/share/.env.project',
+  '/vercel/share/.env.snowflake',
+  '.env',
+  '.env.local'
+];
+
+envFiles.forEach(envFile => {
+  try {
+    const envPath = envFile.startsWith('/') ? envFile : path.join(__dirname, envFile);
+    if (fs.existsSync(envPath)) {
+      const envContent = fs.readFileSync(envPath, 'utf-8');
+      envContent.split('\n').forEach(line => {
+        const [key, ...valueParts] = line.split('=');
+        if (key && valueParts.length > 0) {
+          const value = valueParts.join('=').trim().replace(/^["']|["']$/g, '');
+          if (!process.env[key.trim()]) {
+            process.env[key.trim()] = value;
+          }
+        }
+      });
+    }
+  } catch (e) {
+    // Ignore errors loading env files
+  }
+});
+
 const PORT = process.env.PORT || 3000;
 
 // MIME types
@@ -31,22 +59,31 @@ async function handlePixApi(req, res) {
   req.on('end', async () => {
     try {
       const { amount, productName, customerName, customerEmail, customerCpf } = JSON.parse(body);
+      
+      const clientId = process.env.SYNCPAY_CLIENT_ID;
+      const clientSecret = process.env.SYNCPAY_CLIENT_SECRET;
+      
+      if (!clientId || !clientSecret) {
+        console.error('[SyncPay] Credenciais nao configuradas');
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        return res.end(JSON.stringify({ error: 'Credenciais PIX nao configuradas. Configure SYNCPAY_CLIENT_ID e SYNCPAY_CLIENT_SECRET.' }));
+      }
 
       // Get auth token
       const authResponse = await fetch('https://api.syncpayments.com.br/auth/oauth/token', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          client_id: process.env.SYNCPAY_CLIENT_ID,
-          client_secret: process.env.SYNCPAY_CLIENT_SECRET,
+          client_id: clientId,
+          client_secret: clientSecret,
         }),
       });
 
       if (!authResponse.ok) {
         const errorText = await authResponse.text();
-        console.error('[SyncPay Auth Error]', errorText);
+        console.error('[SyncPay Auth Error]', authResponse.status, errorText);
         res.writeHead(500, { 'Content-Type': 'application/json' });
-        return res.end(JSON.stringify({ error: 'Falha na autenticacao' }));
+        return res.end(JSON.stringify({ error: 'Falha na autenticacao com SyncPay. Verifique suas credenciais.' }));
       }
 
       const authData = await authResponse.json();
