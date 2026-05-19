@@ -150,12 +150,88 @@
             gap: 0.5rem;
             margin-top: 1rem;
         }
+        /* Mobile First Responsive Styles */
         @media (max-width: 768px) {
+            .modal-overlay {
+                padding: 0;
+                align-items: flex-end;
+            }
             .modal-content {
-                margin: 0.5rem;
+                margin: 0;
+                max-height: 95vh;
+                border-radius: 16px 16px 0 0;
+                width: 100%;
             }
             .product-modal-grid {
                 grid-template-columns: 1fr !important;
+            }
+            .modal-close {
+                top: 0.75rem;
+                right: 0.75rem;
+                width: 36px;
+                height: 36px;
+                background: rgba(255,255,255,0.9);
+                border-radius: 50%;
+                font-size: 1.25rem;
+            }
+            .form-input {
+                padding: 1rem;
+                font-size: 16px; /* Prevents iOS zoom */
+            }
+            .size-btn {
+                padding: 0.875rem 1rem;
+                min-width: 50px;
+                font-size: 0.875rem;
+            }
+            .product-btn, .product-btn-outline {
+                padding: 1rem 1.25rem;
+                font-size: 0.875rem;
+            }
+            .product-card-buttons {
+                flex-direction: column;
+            }
+            .product-card-buttons button {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .modal-content {
+                max-height: 100vh;
+                border-radius: 0;
+            }
+            .form-label {
+                font-size: 0.7rem;
+            }
+            .grid.grid-cols-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Touch-friendly improvements */
+        @media (hover: none) and (pointer: coarse) {
+            .size-btn {
+                min-height: 48px;
+            }
+            .product-btn, .product-btn-outline {
+                min-height: 52px;
+            }
+            .modal-close {
+                min-width: 44px;
+                min-height: 44px;
+            }
+        }
+        
+        /* Smooth scrolling for modals */
+        .modal-content {
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior: contain;
+        }
+        
+        /* Safe area for notched phones */
+        @supports (padding-bottom: env(safe-area-inset-bottom)) {
+            .modal-content {
+                padding-bottom: env(safe-area-inset-bottom);
             }
         }
     </style>
@@ -532,6 +608,42 @@
         </div>
     </div>
 
+    <!-- Size Selection Modal -->
+    <div id="sizeModal" class="modal-overlay" onclick="if(event.target === this) closeAllModals()">
+        <div class="modal-content" style="max-width: 400px;">
+            <button class="modal-close" onclick="closeAllModals()">&times;</button>
+            <div class="p-6">
+                <div class="flex items-center gap-4 mb-6">
+                    <img id="sizeModalImage" src="" alt="" class="w-20 h-20 object-cover rounded" />
+                    <div>
+                        <h3 id="sizeModalName" class="font-bold text-lg"></h3>
+                        <p id="sizeModalPrice" class="text-brasil-green font-display text-xl"></p>
+                    </div>
+                </div>
+                
+                <h4 class="font-mono text-[10px] font-bold uppercase tracking-widest mb-4">Selecione o Tamanho</h4>
+                <div class="grid grid-cols-5 gap-2 mb-6" id="sizeModalSelector">
+                    <button class="size-btn" data-size="P" onclick="selectSizeAndProceed('P')">P</button>
+                    <button class="size-btn" data-size="M" onclick="selectSizeAndProceed('M')">M</button>
+                    <button class="size-btn" data-size="G" onclick="selectSizeAndProceed('G')">G</button>
+                    <button class="size-btn" data-size="GG" onclick="selectSizeAndProceed('GG')">GG</button>
+                    <button class="size-btn" data-size="XGG" onclick="selectSizeAndProceed('XGG')">XGG</button>
+                </div>
+                
+                <div class="bg-gray-50 p-4 rounded text-sm">
+                    <p class="font-bold mb-2">Guia de Tamanhos:</p>
+                    <ul class="text-gray-600 space-y-1 text-xs">
+                        <li><strong>P:</strong> Largura 48cm | Comprimento 68cm</li>
+                        <li><strong>M:</strong> Largura 52cm | Comprimento 70cm</li>
+                        <li><strong>G:</strong> Largura 56cm | Comprimento 72cm</li>
+                        <li><strong>GG:</strong> Largura 60cm | Comprimento 74cm</li>
+                        <li><strong>XGG:</strong> Largura 64cm | Comprimento 76cm</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Checkout Modal -->
     <div id="checkoutModal" class="modal-overlay" onclick="if(event.target === this) closeAllModals()">
         <div class="modal-content" style="max-width: 600px;">
@@ -574,14 +686,14 @@
                                 <label class="form-label">Nome completo <span>*</span></label>
                                 <input type="text" name="nome" class="form-input" placeholder="João da Silva" required />
                             </div>
-                            <div class="grid grid-cols-2 gap-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div>
                                     <label class="form-label">CPF <span>*</span></label>
-                                    <input type="text" name="cpf" class="form-input" placeholder="000.000.000-00" required />
+                                    <input type="text" name="cpf" id="cpfInput" class="form-input" placeholder="000.000.000-00" required inputmode="numeric" />
                                 </div>
                                 <div>
                                     <label class="form-label">Telefone <span>*</span></label>
-                                    <input type="tel" name="telefone" class="form-input" placeholder="(11) 92684-1693" required />
+                                    <input type="tel" name="telefone" id="telInput" class="form-input" placeholder="(11) 92684-1693" required inputmode="tel" />
                                 </div>
                             </div>
                             <div>
@@ -598,16 +710,16 @@
                         <div class="space-y-4">
                             <div>
                                 <label class="form-label">CEP <span>*</span></label>
-                                <input type="text" name="cep" id="cepInput" class="form-input" placeholder="00000-000" required onblur="calculateShipping()" />
+                                <input type="text" name="cep" id="cepInput" class="form-input" placeholder="00000-000" required onblur="calculateShipping()" inputmode="numeric" />
                             </div>
                             <div>
                                 <label class="form-label">Endereço <span>*</span></label>
                                 <input type="text" name="endereco" class="form-input" placeholder="Rua das Flores" required />
                             </div>
-                            <div class="grid grid-cols-2 gap-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div>
                                     <label class="form-label">Número <span>*</span></label>
-                                    <input type="text" name="numero" class="form-input" placeholder="123" required />
+                                    <input type="text" name="numero" class="form-input" placeholder="123" required inputmode="numeric" />
                                 </div>
                                 <div>
                                     <label class="form-label">Complemento</label>
@@ -618,14 +730,43 @@
                                 <label class="form-label">Bairro <span>*</span></label>
                                 <input type="text" name="bairro" class="form-input" placeholder="Centro" required />
                             </div>
-                            <div class="grid grid-cols-2 gap-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div>
                                     <label class="form-label">Cidade <span>*</span></label>
                                     <input type="text" name="cidade" class="form-input" placeholder="São Paulo" required />
                                 </div>
                                 <div>
                                     <label class="form-label">Estado <span>*</span></label>
-                                    <input type="text" name="estado" class="form-input" placeholder="SP" maxlength="2" required />
+                                    <select name="estado" class="form-input" required>
+                                        <option value="">UF</option>
+                                        <option value="AC">AC</option>
+                                        <option value="AL">AL</option>
+                                        <option value="AP">AP</option>
+                                        <option value="AM">AM</option>
+                                        <option value="BA">BA</option>
+                                        <option value="CE">CE</option>
+                                        <option value="DF">DF</option>
+                                        <option value="ES">ES</option>
+                                        <option value="GO">GO</option>
+                                        <option value="MA">MA</option>
+                                        <option value="MT">MT</option>
+                                        <option value="MS">MS</option>
+                                        <option value="MG">MG</option>
+                                        <option value="PA">PA</option>
+                                        <option value="PB">PB</option>
+                                        <option value="PR">PR</option>
+                                        <option value="PE">PE</option>
+                                        <option value="PI">PI</option>
+                                        <option value="RJ">RJ</option>
+                                        <option value="RN">RN</option>
+                                        <option value="RS">RS</option>
+                                        <option value="RO">RO</option>
+                                        <option value="RR">RR</option>
+                                        <option value="SC">SC</option>
+                                        <option value="SP">SP</option>
+                                        <option value="SE">SE</option>
+                                        <option value="TO">TO</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -792,7 +933,7 @@
             document.getElementById('productModal').classList.add('active');
         }
 
-        // Open checkout modal directly
+        // Open checkout modal directly - now shows size selection modal first
         function openCheckoutModal(productId) {
             const product = products[productId];
             if (!product) return;
@@ -800,15 +941,35 @@
             currentProduct = product;
             selectedSize = null;
 
-            // Show size selection alert
-            const size = prompt('Selecione o tamanho (P, M, G, GG, XGG):');
-            if (!size || !['P', 'M', 'G', 'GG', 'XGG'].includes(size.toUpperCase())) {
-                alert('Por favor, selecione um tamanho válido.');
-                return;
-            }
-            selectedSize = size.toUpperCase();
-
-            showCheckoutModal();
+            // Show size selection modal
+            document.getElementById('sizeModalImage').src = product.image;
+            document.getElementById('sizeModalName').textContent = product.name;
+            document.getElementById('sizeModalPrice').textContent = formatCurrency(product.price);
+            
+            // Reset size buttons
+            document.querySelectorAll('#sizeModalSelector .size-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            
+            document.getElementById('sizeModal').classList.add('active');
+        }
+        
+        // Select size and proceed to checkout
+        function selectSizeAndProceed(size) {
+            selectedSize = size;
+            
+            // Highlight selected button
+            document.querySelectorAll('#sizeModalSelector .size-btn').forEach(btn => {
+                btn.classList.remove('selected');
+                if (btn.dataset.size === size) {
+                    btn.classList.add('selected');
+                }
+            });
+            
+            // Small delay for visual feedback then proceed
+            setTimeout(() => {
+                showCheckoutModal();
+            }, 200);
         }
 
         // Show checkout modal
@@ -943,6 +1104,48 @@
         // Cart button (for future implementation)
         document.getElementById('cartBtn').addEventListener('click', function() {
             alert('Funcionalidade do carrinho em desenvolvimento. Use os botões "Comprar Agora" nos produtos.');
+        });
+        
+        // Input masks for mobile-friendly forms
+        function maskCPF(input) {
+            let value = input.value.replace(/\D/g, '');
+            if (value.length > 11) value = value.slice(0, 11);
+            value = value.replace(/(\d{3})(\d)/, '$1.$2');
+            value = value.replace(/(\d{3})(\d)/, '$1.$2');
+            value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+            input.value = value;
+        }
+        
+        function maskPhone(input) {
+            let value = input.value.replace(/\D/g, '');
+            if (value.length > 11) value = value.slice(0, 11);
+            if (value.length > 2) {
+                value = '(' + value.slice(0, 2) + ') ' + value.slice(2);
+            }
+            if (value.length > 10) {
+                value = value.slice(0, 10) + '-' + value.slice(10);
+            }
+            input.value = value;
+        }
+        
+        function maskCEP(input) {
+            let value = input.value.replace(/\D/g, '');
+            if (value.length > 8) value = value.slice(0, 8);
+            if (value.length > 5) {
+                value = value.slice(0, 5) + '-' + value.slice(5);
+            }
+            input.value = value;
+        }
+        
+        // Add input event listeners for masks
+        document.addEventListener('DOMContentLoaded', function() {
+            const cpfInput = document.getElementById('cpfInput');
+            const telInput = document.getElementById('telInput');
+            const cepInput = document.getElementById('cepInput');
+            
+            if (cpfInput) cpfInput.addEventListener('input', function() { maskCPF(this); });
+            if (telInput) telInput.addEventListener('input', function() { maskPhone(this); });
+            if (cepInput) cepInput.addEventListener('input', function() { maskCEP(this); });
         });
     </script>
 </body>
