@@ -2195,13 +2195,8 @@
                 document.getElementById('pixProductImage').src = currentProduct.images[0];
                 document.getElementById('pixProductDesc').textContent = currentProduct.name + ' — Tam. ' + selectedSize;
                 
-                // Use real QR code if available, otherwise generate pattern
-                if (data.qrCodeBase64) {
-                    const qrContainer = document.getElementById('qrCodeContainer');
-                    qrContainer.innerHTML = '<img src="data:image/png;base64,' + data.qrCodeBase64 + '" class="w-full h-full" alt="QR Code PIX" />';
-                } else {
-                    generateQRPattern();
-                }
+                // Generate QR pattern (demo mode always uses generated pattern)
+                generateQRPattern();
                 
                 // Save order to user account
                 saveOrder(currentProduct, selectedSize, total, pixCode);
