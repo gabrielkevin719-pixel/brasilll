@@ -835,6 +835,74 @@
         </div>
     </div>
 
+    <!-- My Account Modal (Post-Purchase Area) -->
+    <div id="accountModal" class="modal-overlay" onclick="if(event.target === this) closeAllModals()">
+        <div class="modal-content" style="max-width: 500px; max-height: 90vh;">
+            <button class="modal-close" onclick="closeAllModals()">&times;</button>
+            <div class="p-6 md:p-8">
+                <!-- Header -->
+                <div class="flex items-center justify-center gap-2 mb-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-brasil-yellow"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg>
+                    <span class="font-display text-lg uppercase tracking-tight">Minha Conta</span>
+                </div>
+                
+                <!-- User Info -->
+                <div class="bg-gray-50 rounded-lg p-4 mb-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-brasil-yellow rounded-full flex items-center justify-center">
+                            <span id="accountInitials" class="font-bold text-ink text-lg">JS</span>
+                        </div>
+                        <div>
+                            <p id="accountUserName" class="font-bold">Joao da Silva</p>
+                            <p id="accountUserEmail" class="text-sm text-gray-500">joao@email.com</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tabs -->
+                <div class="flex border-b mb-6">
+                    <button id="ordersTab" class="flex-1 py-3 text-sm font-bold border-b-2 border-ink" onclick="showAccountTab('orders')">Meus Pedidos</button>
+                    <button id="dataTab" class="flex-1 py-3 text-sm font-bold text-gray-400 border-b-2 border-transparent" onclick="showAccountTab('data')">Meus Dados</button>
+                </div>
+                
+                <!-- Orders Tab -->
+                <div id="ordersContent">
+                    <div id="ordersList">
+                        <!-- Orders will be populated here -->
+                    </div>
+                    <div id="noOrders" class="text-center py-8 hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="mx-auto text-gray-300 mb-4"><path d="M16 10a4 4 0 0 1-8 0"></path><path d="M3.103 6.034h17.794"></path><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"></path></svg>
+                        <p class="text-gray-500 mb-2">Voce ainda nao fez nenhum pedido</p>
+                        <button onclick="closeAllModals(); document.getElementById('lancamentos').scrollIntoView({behavior: 'smooth'});" class="text-brasil-green font-bold text-sm hover:underline">Ver produtos</button>
+                    </div>
+                </div>
+                
+                <!-- Data Tab -->
+                <div id="dataContent" class="hidden">
+                    <form onsubmit="updateUserData(event)" class="space-y-4">
+                        <div>
+                            <label class="form-label">Nome completo</label>
+                            <input type="text" id="editUserName" class="form-input" placeholder="Joao da Silva" />
+                        </div>
+                        <div>
+                            <label class="form-label">Email</label>
+                            <input type="email" id="editUserEmail" class="form-input" placeholder="seu@email.com" />
+                        </div>
+                        <div>
+                            <label class="form-label">Telefone</label>
+                            <input type="tel" id="editUserPhone" class="form-input" placeholder="(11) 91234-5678" />
+                        </div>
+                        <button type="submit" class="w-full bg-ink text-canvas py-3 font-bold uppercase text-sm hover:bg-brasil-green transition-colors">Salvar alteracoes</button>
+                    </form>
+                    
+                    <hr class="my-6" />
+                    
+                    <button onclick="handleLogout()" class="w-full border border-red-500 text-red-500 py-3 font-bold uppercase text-sm hover:bg-red-50 transition-colors">Sair da conta</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Checkout Modal -->
     <div id="checkoutModal" class="modal-overlay" onclick="if(event.target === this) closeAllModals()">
         <div class="modal-content" style="max-width: 600px;">
@@ -1168,12 +1236,179 @@
             
             // Update mobile header button
             const mobileAuthBtn = document.querySelector('.mobile-header button[onclick="openAuthModal()"]');
-            if (mobileAuthBtn && isLoggedIn) {
-                mobileAuthBtn.innerHTML = `
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="flex-shrink-0"><circle cx="12" cy="8" r="5"></circle><path d="M20 21a8 8 0 1 0-16 0"></path></svg>
-                    <span class="whitespace-nowrap">${userName ? userName.split(' ')[0] : 'Minha Conta'}</span>
-                `;
+            if (mobileAuthBtn) {
+                if (isLoggedIn) {
+                    mobileAuthBtn.setAttribute('onclick', 'openAccountModal()');
+                    mobileAuthBtn.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="flex-shrink-0"><circle cx="12" cy="8" r="5"></circle><path d="M20 21a8 8 0 1 0-16 0"></path></svg>
+                        <span class="whitespace-nowrap">${userName ? userName.split(' ')[0] : 'Conta'}</span>
+                    `;
+                } else {
+                    mobileAuthBtn.setAttribute('onclick', 'openAuthModal()');
+                    mobileAuthBtn.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="flex-shrink-0"><circle cx="12" cy="8" r="5"></circle><path d="M20 21a8 8 0 1 0-16 0"></path></svg>
+                        <span class="whitespace-nowrap">Entrar</span>
+                    `;
+                }
             }
+        }
+        
+        // Account Modal Functions
+        function openAccountModal() {
+            closeAllModals();
+            loadAccountData();
+            loadOrders();
+            showAccountTab('orders');
+            document.getElementById('accountModal').classList.add('active');
+        }
+        
+        function loadAccountData() {
+            const userName = localStorage.getItem('userName') || 'Usuario';
+            const userEmail = localStorage.getItem('userEmail') || '';
+            const userPhone = localStorage.getItem('userPhone') || '';
+            
+            // Set initials
+            const initials = userName.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2);
+            document.getElementById('accountInitials').textContent = initials;
+            document.getElementById('accountUserName').textContent = userName;
+            document.getElementById('accountUserEmail').textContent = userEmail;
+            
+            // Set form fields
+            document.getElementById('editUserName').value = userName;
+            document.getElementById('editUserEmail').value = userEmail;
+            document.getElementById('editUserPhone').value = userPhone;
+        }
+        
+        function showAccountTab(tab) {
+            const ordersTab = document.getElementById('ordersTab');
+            const dataTab = document.getElementById('dataTab');
+            const ordersContent = document.getElementById('ordersContent');
+            const dataContent = document.getElementById('dataContent');
+            
+            if (tab === 'orders') {
+                ordersTab.classList.add('border-ink');
+                ordersTab.classList.remove('text-gray-400', 'border-transparent');
+                dataTab.classList.remove('border-ink');
+                dataTab.classList.add('text-gray-400', 'border-transparent');
+                ordersContent.classList.remove('hidden');
+                dataContent.classList.add('hidden');
+            } else {
+                dataTab.classList.add('border-ink');
+                dataTab.classList.remove('text-gray-400', 'border-transparent');
+                ordersTab.classList.remove('border-ink');
+                ordersTab.classList.add('text-gray-400', 'border-transparent');
+                dataContent.classList.remove('hidden');
+                ordersContent.classList.add('hidden');
+            }
+        }
+        
+        function loadOrders() {
+            const orders = JSON.parse(localStorage.getItem('userOrders') || '[]');
+            const ordersList = document.getElementById('ordersList');
+            const noOrders = document.getElementById('noOrders');
+            
+            if (orders.length === 0) {
+                ordersList.innerHTML = '';
+                noOrders.classList.remove('hidden');
+                return;
+            }
+            
+            noOrders.classList.add('hidden');
+            ordersList.innerHTML = orders.map(order => `
+                <div class="border rounded-lg p-4 mb-4">
+                    <div class="flex items-start gap-3 mb-3">
+                        <img src="${order.productImage}" alt="${order.productName}" class="w-16 h-16 object-cover rounded" />
+                        <div class="flex-1">
+                            <p class="font-bold text-sm">${order.productName}</p>
+                            <p class="text-xs text-gray-500">Tamanho: ${order.size}</p>
+                            <p class="text-sm font-bold text-brasil-green mt-1">${order.total}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between pt-3 border-t">
+                        <div>
+                            <p class="text-xs text-gray-500">Pedido #${order.id}</p>
+                            <p class="text-xs text-gray-400">${order.date}</p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full ${getStatusColor(order.status)}"></span>
+                            <span class="text-xs font-medium">${getStatusText(order.status)}</span>
+                        </div>
+                    </div>
+                    ${order.pixCode ? `
+                    <div class="mt-3 pt-3 border-t">
+                        <p class="text-xs text-gray-500 mb-2">Codigo PIX:</p>
+                        <div class="flex gap-2">
+                            <input type="text" value="${order.pixCode}" readonly class="flex-1 bg-gray-50 border rounded px-2 py-1 text-xs font-mono" />
+                            <button onclick="navigator.clipboard.writeText('${order.pixCode}'); alert('Codigo copiado!');" class="bg-ink text-canvas px-3 py-1 text-xs font-bold">Copiar</button>
+                        </div>
+                    </div>
+                    ` : ''}
+                </div>
+            `).join('');
+        }
+        
+        function getStatusColor(status) {
+            switch(status) {
+                case 'pending': return 'bg-yellow-500';
+                case 'paid': return 'bg-blue-500';
+                case 'shipped': return 'bg-purple-500';
+                case 'delivered': return 'bg-green-500';
+                default: return 'bg-gray-500';
+            }
+        }
+        
+        function getStatusText(status) {
+            switch(status) {
+                case 'pending': return 'Aguardando pagamento';
+                case 'paid': return 'Pagamento confirmado';
+                case 'shipped': return 'Enviado';
+                case 'delivered': return 'Entregue';
+                default: return 'Processando';
+            }
+        }
+        
+        function updateUserData(event) {
+            event.preventDefault();
+            const name = document.getElementById('editUserName').value;
+            const email = document.getElementById('editUserEmail').value;
+            const phone = document.getElementById('editUserPhone').value;
+            
+            localStorage.setItem('userName', name);
+            localStorage.setItem('userEmail', email);
+            localStorage.setItem('userPhone', phone);
+            
+            loadAccountData();
+            updateAuthUI();
+            alert('Dados atualizados com sucesso!');
+        }
+        
+        function handleLogout() {
+            if (confirm('Tem certeza que deseja sair?')) {
+                localStorage.removeItem('isLoggedIn');
+                localStorage.removeItem('userName');
+                localStorage.removeItem('userEmail');
+                localStorage.removeItem('userPhone');
+                closeAllModals();
+                updateAuthUI();
+                alert('Voce saiu da sua conta.');
+            }
+        }
+        
+        // Save order after payment
+        function saveOrder(product, size, total, pixCode) {
+            const orders = JSON.parse(localStorage.getItem('userOrders') || '[]');
+            const newOrder = {
+                id: Date.now().toString().slice(-8),
+                productName: product.name,
+                productImage: product.image,
+                size: size,
+                total: total,
+                pixCode: pixCode,
+                status: 'pending',
+                date: new Date().toLocaleDateString('pt-BR')
+            };
+            orders.unshift(newOrder);
+            localStorage.setItem('userOrders', JSON.stringify(orders));
         }
         
         // Check auth status on page load
@@ -1351,7 +1586,7 @@
             
             // Validate form
             if (!form.checkValidity()) {
-                alert('Por favor, preencha todos os campos obrigatórios.');
+                alert('Por favor, preencha todos os campos obrigatorios.');
                 return;
             }
 
@@ -1359,14 +1594,30 @@
             const pixCode = generatePixCode();
             document.getElementById('pixCode').textContent = pixCode;
             
+            // Calculate total
+            const total = formatCurrency(currentProduct.price + shippingCost);
+            
             // Update PIX modal
             document.getElementById('pixProductName').textContent = currentProduct.name + ' (Tam: ' + selectedSize + ')';
             document.getElementById('pixProductPrice').textContent = formatCurrency(currentProduct.price);
             document.getElementById('pixShipping').textContent = formatCurrency(shippingCost);
-            document.getElementById('pixTotal').textContent = formatCurrency(currentProduct.price + shippingCost);
+            document.getElementById('pixTotal').textContent = total;
             
             // Generate QR code pattern
             generateQRPattern();
+            
+            // Save order to user account
+            saveOrder(currentProduct, selectedSize, total, pixCode);
+            
+            // Auto-login user if not logged in (using form email)
+            const email = formData.get('email');
+            const nome = formData.get('nome');
+            if (!localStorage.getItem('isLoggedIn')) {
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('userEmail', email);
+                localStorage.setItem('userName', nome);
+                updateAuthUI();
+            }
             
             // Show PIX modal
             closeAllModals();
