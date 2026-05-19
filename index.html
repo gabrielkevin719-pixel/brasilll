@@ -305,6 +305,22 @@
                 display: none;
             }
         }
+        
+        /* Cart notification animation */
+        @keyframes slide-up {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-slide-up {
+            animation: slide-up 0.3s ease-out;
+            transition: opacity 0.3s, transform 0.3s;
+        }
     </style>
 </head>
 
@@ -443,10 +459,10 @@
                                 <p class="font-display text-xl text-brasil-green">R$ 349,90</p>
                             </div>
                         </div>
-                        <div class="product-card-buttons">
-                            <button class="product-btn-outline flex-1" onclick="openProductModal('brasil-home-2024')">Ver Detalhes</button>
-                            <button class="product-btn flex-1" onclick="openCheckoutModal('brasil-home-2024')">Comprar Agora</button>
-                        </div>
+  <div class="product-card-buttons">
+  <button class="product-btn-outline flex-1" onclick="openProductModal('brasil-home-2024')">Ver Detalhes</button>
+  <button class="product-btn flex-1 flex items-center justify-center gap-2" onclick="addToCartWithSize('brasil-home-2024')"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 10a4 4 0 0 1-8 0"/><path d="M3.103 6.034h17.794"/><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"/></svg>Adicionar</button>
+  </div>
                     </div>
                 </article>
 
@@ -468,10 +484,10 @@
                                 <p class="font-display text-xl text-brasil-green">R$ 329,90</p>
                             </div>
                         </div>
-                        <div class="product-card-buttons">
-                            <button class="product-btn-outline flex-1" onclick="openProductModal('brasil-2025')">Ver Detalhes</button>
-                            <button class="product-btn flex-1" onclick="openCheckoutModal('brasil-2025')">Comprar Agora</button>
-                        </div>
+  <div class="product-card-buttons">
+  <button class="product-btn-outline flex-1" onclick="openProductModal('brasil-2025')">Ver Detalhes</button>
+  <button class="product-btn flex-1 flex items-center justify-center gap-2" onclick="addToCartWithSize('brasil-2025')"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 10a4 4 0 0 1-8 0"/><path d="M3.103 6.034h17.794"/><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"/></svg>Adicionar</button>
+  </div>
                     </div>
                 </article>
 
@@ -493,10 +509,10 @@
                                 <p class="font-display text-xl text-brasil-green">R$ 379,90</p>
                             </div>
                         </div>
-                        <div class="product-card-buttons">
-                            <button class="product-btn-outline flex-1" onclick="openProductModal('brasil-away-2026')">Ver Detalhes</button>
-                            <button class="product-btn flex-1" onclick="openCheckoutModal('brasil-away-2026')">Comprar Agora</button>
-                        </div>
+  <div class="product-card-buttons">
+  <button class="product-btn-outline flex-1" onclick="openProductModal('brasil-away-2026')">Ver Detalhes</button>
+  <button class="product-btn flex-1 flex items-center justify-center gap-2" onclick="addToCartWithSize('brasil-away-2026')"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 10a4 4 0 0 1-8 0"/><path d="M3.103 6.034h17.794"/><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"/></svg>Adicionar</button>
+  </div>
                     </div>
                 </article>
             </div>
@@ -554,10 +570,10 @@
                                 <p class="font-display text-xl text-brasil-green">R$ 289,90</p>
                             </div>
                         </div>
-                        <div class="product-card-buttons">
-                            <button class="product-btn-outline flex-1" onclick="openProductModal('retro-1970')">Ver Detalhes</button>
-                            <button class="product-btn flex-1" onclick="openCheckoutModal('retro-1970')">Comprar Agora</button>
-                        </div>
+  <div class="product-card-buttons">
+  <button class="product-btn-outline flex-1" onclick="openProductModal('retro-1970')">Ver Detalhes</button>
+  <button class="product-btn flex-1 flex items-center justify-center gap-2" onclick="addToCartWithSize('retro-1970')"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 10a4 4 0 0 1-8 0"/><path d="M3.103 6.034h17.794"/><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"/></svg>Adicionar</button>
+  </div>
                     </div>
                 </article>
 
@@ -578,10 +594,10 @@
                                 <p class="font-display text-xl text-brasil-green">R$ 279,90</p>
                             </div>
                         </div>
-                        <div class="product-card-buttons">
-                            <button class="product-btn-outline flex-1" onclick="openProductModal('retro-1994')">Ver Detalhes</button>
-                            <button class="product-btn flex-1" onclick="openCheckoutModal('retro-1994')">Comprar Agora</button>
-                        </div>
+  <div class="product-card-buttons">
+  <button class="product-btn-outline flex-1" onclick="openProductModal('retro-1994')">Ver Detalhes</button>
+  <button class="product-btn flex-1 flex items-center justify-center gap-2" onclick="addToCartWithSize('retro-1994')"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 10a4 4 0 0 1-8 0"/><path d="M3.103 6.034h17.794"/><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"/></svg>Adicionar</button>
+  </div>
                     </div>
                 </article>
 
@@ -603,10 +619,10 @@
                                 <p class="font-display text-xl text-brasil-green">R$ 299,90</p>
                             </div>
                         </div>
-                        <div class="product-card-buttons">
-                            <button class="product-btn-outline flex-1" onclick="openProductModal('retro-2002')">Ver Detalhes</button>
-                            <button class="product-btn flex-1" onclick="openCheckoutModal('retro-2002')">Comprar Agora</button>
-                        </div>
+  <div class="product-card-buttons">
+  <button class="product-btn-outline flex-1" onclick="openProductModal('retro-2002')">Ver Detalhes</button>
+  <button class="product-btn flex-1 flex items-center justify-center gap-2" onclick="addToCartWithSize('retro-2002')"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 10a4 4 0 0 1-8 0"/><path d="M3.103 6.034h17.794"/><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"/></svg>Adicionar</button>
+  </div>
                     </div>
                 </article>
             </div>
@@ -908,6 +924,58 @@
                     <hr class="my-6" />
                     
                     <button onclick="handleLogout()" class="w-full border border-red-500 text-red-500 py-3 font-bold uppercase text-sm hover:bg-red-50 transition-colors">Sair da conta</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="modal-overlay" onclick="if(event.target === this) closeAllModals()">
+        <div class="modal-content" style="max-width: 450px; max-height: 90vh;">
+            <button class="modal-close" onclick="closeAllModals()">&times;</button>
+            <div class="p-6 md:p-8">
+                <!-- Header -->
+                <div class="flex items-center gap-3 mb-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-brasil-green"><path d="M16 10a4 4 0 0 1-8 0"></path><path d="M3.103 6.034h17.794"></path><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"></path></svg>
+                    <h2 class="font-display text-xl uppercase">Minha Sacola</h2>
+                    <span id="cartItemsCount" class="bg-brasil-green text-white text-xs font-bold px-2 py-1 rounded-full">0</span>
+                </div>
+                
+                <!-- Cart Items -->
+                <div id="cartItems" class="space-y-4 max-h-[40vh] overflow-y-auto">
+                    <!-- Items will be populated here -->
+                </div>
+                
+                <!-- Empty Cart -->
+                <div id="emptyCart" class="text-center py-12">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="mx-auto text-gray-200 mb-4"><path d="M16 10a4 4 0 0 1-8 0"></path><path d="M3.103 6.034h17.794"></path><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"></path></svg>
+                    <p class="text-gray-500 mb-2">Sua sacola esta vazia</p>
+                    <button onclick="closeAllModals(); document.getElementById('lancamentos').scrollIntoView({behavior: 'smooth'});" class="text-brasil-green font-bold text-sm hover:underline">Ver produtos</button>
+                </div>
+                
+                <!-- Cart Summary -->
+                <div id="cartSummary" class="hidden border-t pt-4 mt-4">
+                    <div class="space-y-2 mb-4">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Subtotal</span>
+                            <span id="cartSubtotal" class="font-medium">R$ 0,00</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Frete</span>
+                            <span class="text-gray-400">Calculado no checkout</span>
+                        </div>
+                        <div class="flex justify-between font-bold text-lg pt-2 border-t">
+                            <span>Total</span>
+                            <span id="cartTotal">R$ 0,00</span>
+                        </div>
+                    </div>
+                    
+                    <button onclick="checkoutFromCart()" class="w-full bg-ink text-canvas py-4 font-bold uppercase text-sm hover:bg-brasil-green transition-colors flex items-center justify-center gap-2">
+                        <span>Finalizar Compra</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </button>
+                    
+                    <button onclick="closeAllModals()" class="w-full border border-gray-200 text-gray-600 py-3 font-medium text-sm hover:bg-gray-50 transition-colors mt-2">Continuar Comprando</button>
                 </div>
             </div>
         </div>
@@ -1653,10 +1721,188 @@
             document.getElementById('pixModal').classList.add('active');
         }
 
-        // Cart button (for future implementation)
+        // Cart Management
+        let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+        
+        function openCartModal() {
+            closeAllModals();
+            renderCart();
+            document.getElementById('cartModal').classList.add('active');
+        }
+        
+        function addToCart(productId, size) {
+            const product = products[productId];
+            if (!product) return;
+            
+            // Check if item already exists in cart
+            const existingIndex = cart.findIndex(item => item.productId === productId && item.size === size);
+            
+            if (existingIndex > -1) {
+                cart[existingIndex].quantity += 1;
+            } else {
+                cart.push({
+                    productId: productId,
+                    name: product.name,
+                    price: product.price,
+                    image: product.image,
+                    size: size,
+                    quantity: 1
+                });
+            }
+            
+            saveCart();
+            updateCartCount();
+            
+            // Show feedback
+            showCartNotification(product.name);
+        }
+        
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            saveCart();
+            updateCartCount();
+            renderCart();
+        }
+        
+        function updateCartItemQuantity(index, newQuantity) {
+            if (newQuantity < 1) {
+                removeFromCart(index);
+                return;
+            }
+            cart[index].quantity = newQuantity;
+            saveCart();
+            updateCartCount();
+            renderCart();
+        }
+        
+        function saveCart() {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+        
+        function updateCartCount() {
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.querySelectorAll('#cartCount, #cartItemsCount').forEach(el => {
+                if (el) el.textContent = totalItems;
+            });
+        }
+        
+        function getCartTotal() {
+            return cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        }
+        
+        function renderCart() {
+            const cartItemsEl = document.getElementById('cartItems');
+            const emptyCartEl = document.getElementById('emptyCart');
+            const cartSummaryEl = document.getElementById('cartSummary');
+            
+            if (cart.length === 0) {
+                cartItemsEl.innerHTML = '';
+                emptyCartEl.classList.remove('hidden');
+                cartSummaryEl.classList.add('hidden');
+                return;
+            }
+            
+            emptyCartEl.classList.add('hidden');
+            cartSummaryEl.classList.remove('hidden');
+            
+            cartItemsEl.innerHTML = cart.map((item, index) => `
+                <div class="flex gap-3 p-3 bg-gray-50 rounded-lg">
+                    <img src="${item.image}" alt="${item.name}" class="w-20 h-20 object-cover rounded" />
+                    <div class="flex-1 min-w-0">
+                        <h4 class="font-bold text-sm truncate">${item.name}</h4>
+                        <p class="text-xs text-gray-500">Tamanho: ${item.size}</p>
+                        <p class="font-bold text-brasil-green mt-1">${formatCurrency(item.price)}</p>
+                        <div class="flex items-center gap-2 mt-2">
+                            <button onclick="updateCartItemQuantity(${index}, ${item.quantity - 1})" class="w-7 h-7 bg-white border rounded flex items-center justify-center text-sm font-bold hover:bg-gray-100">-</button>
+                            <span class="text-sm font-medium w-6 text-center">${item.quantity}</span>
+                            <button onclick="updateCartItemQuantity(${index}, ${item.quantity + 1})" class="w-7 h-7 bg-white border rounded flex items-center justify-center text-sm font-bold hover:bg-gray-100">+</button>
+                            <button onclick="removeFromCart(${index})" class="ml-auto text-red-500 hover:text-red-700">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            const total = getCartTotal();
+            document.getElementById('cartSubtotal').textContent = formatCurrency(total);
+            document.getElementById('cartTotal').textContent = formatCurrency(total);
+        }
+        
+        function showCartNotification(productName) {
+            // Create notification
+            const notification = document.createElement('div');
+            notification.className = 'fixed bottom-4 left-4 right-4 md:left-auto md:right-4 md:w-80 bg-ink text-canvas p-4 rounded-lg shadow-lg z-[60] flex items-center gap-3 animate-slide-up';
+            notification.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-brasil-green flex-shrink-0"><path d="M20 6L9 17l-5-5"/></svg>
+                <div class="flex-1 min-w-0">
+                    <p class="font-bold text-sm">Adicionado a sacola!</p>
+                    <p class="text-xs text-gray-400 truncate">${productName}</p>
+                </div>
+                <button onclick="openCartModal(); this.parentElement.remove();" class="bg-brasil-green text-ink px-3 py-1 text-xs font-bold rounded hover:bg-brasil-yellow transition-colors">Ver</button>
+            `;
+            document.body.appendChild(notification);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateY(20px)';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+        
+        function checkoutFromCart() {
+            if (cart.length === 0) return;
+            
+            // For now, checkout first item (can be expanded for multi-item checkout)
+            const firstItem = cart[0];
+            currentProduct = products[firstItem.productId] || {
+                name: firstItem.name,
+                price: firstItem.price,
+                image: firstItem.image
+            };
+            selectedSize = firstItem.size;
+            
+            closeAllModals();
+            showCheckoutModal();
+        }
+        
+        // Add to cart with size selection modal
+        function addToCartWithSize(productId) {
+            const product = products[productId];
+            if (!product) return;
+
+            currentProduct = product;
+            
+            // Show size selection modal
+            document.getElementById('sizeModalImage').src = product.image;
+            document.getElementById('sizeModalName').textContent = product.name;
+            document.getElementById('sizeModalPrice').textContent = formatCurrency(product.price);
+            
+            // Change size buttons to add to cart instead of proceed to checkout
+            document.querySelectorAll('#sizeModalSelector .size-btn').forEach(btn => {
+                btn.classList.remove('selected');
+                btn.setAttribute('onclick', `selectSizeAndAddToCart('${btn.dataset.size}')`);
+            });
+            
+            document.getElementById('sizeModal').classList.add('active');
+        }
+        
+        function selectSizeAndAddToCart(size) {
+            // Find product ID from currentProduct
+            const productId = Object.keys(products).find(key => products[key].name === currentProduct.name);
+            
+            addToCart(productId, size);
+            closeAllModals();
+        }
+
+        // Cart button opens cart modal
         document.getElementById('cartBtn').addEventListener('click', function() {
-            alert('Funcionalidade do carrinho em desenvolvimento. Use os botões "Comprar Agora" nos produtos.');
+            openCartModal();
         });
+        
+        // Initialize cart count on page load
+        updateCartCount();
         
         // Input masks for mobile-friendly forms
         function maskCPF(input) {
