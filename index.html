@@ -371,18 +371,30 @@
         <!-- Mobile Hero Section with Carousel -->
         <section class="mobile-hero">
             <div class="mobile-hero-slide active" data-slide="0">
-                <img src="/assets/hero-mobile-3.webp" alt="Camisa Brasil Premium" />
+                <img src="/assets/brasil-2026-model-1.jpg" alt="Camisa Brasil 2026 - Modelo Sentado" />
             </div>
             <div class="mobile-hero-slide" data-slide="1">
-                <img src="/assets/hero-mobile-2.webp" alt="Camisa Brasil Away" />
+                <img src="/assets/brasil-2026-model-4.jpg" alt="Camisa Brasil 2026 - Modelo Frontal" />
             </div>
             <div class="mobile-hero-slide" data-slide="2">
-                <img src="/assets/hero-mobile-1.webp" alt="Camisa Brasil Especial" />
+                <img src="/assets/brasil-2026-model-3.jpg" alt="Camisa Brasil 2026 - Modelo Lateral" />
+            </div>
+            <div class="mobile-hero-slide" data-slide="3">
+                <img src="/assets/brasil-2026-model-2.jpg" alt="Camisa Brasil 2026 - Modelo Costas" />
+            </div>
+            <div class="mobile-hero-slide" data-slide="4">
+                <img src="/assets/brasil-2026-model-5.jpg" alt="Camisa Brasil 2026 - Detalhe Costas" />
+            </div>
+            <div class="mobile-hero-slide" data-slide="5">
+                <img src="/assets/brasil-2026-model-6.jpg" alt="Camisa Brasil 2026 - Detalhe Escudo CBF" />
             </div>
             <div class="mobile-hero-dots">
                 <button class="mobile-hero-dot active" data-dot="0" onclick="goToSlide(0)"></button>
                 <button class="mobile-hero-dot" data-dot="1" onclick="goToSlide(1)"></button>
                 <button class="mobile-hero-dot" data-dot="2" onclick="goToSlide(2)"></button>
+                <button class="mobile-hero-dot" data-dot="3" onclick="goToSlide(3)"></button>
+                <button class="mobile-hero-dot" data-dot="4" onclick="goToSlide(4)"></button>
+                <button class="mobile-hero-dot" data-dot="5" onclick="goToSlide(5)"></button>
             </div>
         </section>
 
@@ -1982,7 +1994,7 @@
         
         // Mobile Hero Carousel
         let currentSlide = 0;
-        const totalSlides = 3;
+        const totalSlides = 6;
         let slideInterval;
         
         function goToSlide(index) {
