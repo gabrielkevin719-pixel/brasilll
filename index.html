@@ -2111,7 +2111,19 @@
         // Copy PIX code
         function copyPixCode() {
             const code = document.getElementById('pixCode').textContent;
-            navigator.clipboard.writeText(code).then(() => {
+            
+            // Fallback method using textarea (works when Clipboard API is blocked)
+            const textarea = document.createElement('textarea');
+            textarea.value = code;
+            textarea.style.position = 'fixed';
+            textarea.style.left = '-9999px';
+            textarea.style.top = '0';
+            document.body.appendChild(textarea);
+            textarea.focus();
+            textarea.select();
+            
+            try {
+                document.execCommand('copy');
                 // Show toast notification
                 const toast = document.createElement('div');
                 toast.className = 'fixed bottom-4 left-1/2 -translate-x-1/2 bg-brasil-green text-white px-6 py-3 rounded-lg shadow-lg flex items-center gap-2 z-[9999] animate-fade-in';
@@ -2120,9 +2132,13 @@
                 setTimeout(() => {
                     toast.remove();
                 }, 2500);
-            });
+            } catch (err) {
+                // Silent fail - user can manually copy
+            }
+            
+            document.body.removeChild(textarea);
         }
-
+        
         // Process payment
         function processPayment(event) {
             event.preventDefault();
