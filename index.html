@@ -2147,58 +2147,34 @@
                 
                 let pixCode, transactionId;
                 
-                // SyncPay credentials
-                const CLIENT_ID = '3859949a-26e5-4e26-931f-381f203eed15';
-                const CLIENT_SECRET = 'd3cdd8bb-299f-4f7c-9021-b3c2753f3a2f';
-                
-                // Step 1: Get auth token via proxy that supports POST
-                const authResponse = await fetch('https://proxy.cors.sh/https://api.syncpayments.com.br/api/partner/v1/auth-token', {
+                // Call backend API
+                const response = await fetch('/api/pix', {
                     method: 'POST',
-                    headers: { 
-                        'Content-Type': 'application/json',
-                        'x-cors-api-key': 'temp_' + Date.now()
-                    },
-                    body: JSON.stringify({
-                        client_id: CLIENT_ID,
-                        client_secret: CLIENT_SECRET
-                    })
-                });
-                
-                if (!authResponse.ok) {
-                    throw new Error('Falha na autenticacao SyncPay');
-                }
-                
-                const authData = await authResponse.json();
-                const accessToken = authData.access_token;
-                
-                // Step 2: Create PIX charge
-                const pixResponse = await fetch('https://proxy.cors.sh/https://api.syncpayments.com.br/api/partner/v1/cash-in', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Bearer ' + accessToken,
-                        'x-cors-api-key': 'temp_' + Date.now()
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         amount: totalAmount,
-                        description: currentProduct.name + ' (Tam: ' + selectedSize + ')',
-                        client: {
-                            name: customerName,
-                            cpf: customerCpf.replace(/\D/g, ''),
-                            email: customerEmail,
-                            phone: '11999999999'
-                        }
+                        productName: currentProduct.name + ' (Tam: ' + selectedSize + ')',
+                        customerName: customerName,
+                        customerEmail: customerEmail,
+                        customerCpf: customerCpf
                     })
                 });
                 
-                if (!pixResponse.ok) {
-                    const errorData = await pixResponse.json();
-                    throw new Error(errorData.message || 'Erro ao gerar PIX');
+                // Check if we got HTML (404 page) instead of JSON
+                const contentType = response.headers.get('content-type');
+                if (!contentType || !contentType.includes('application/json')) {
+                    // Preview environment - show deploy message
+                    throw new Error('PREVIEW_MODE');
                 }
                 
-                const pixData = await pixResponse.json();
-                pixCode = pixData.pix_code;
-                transactionId = pixData.identifier;
+                const data = await response.json();
+                
+                if (!response.ok || !data.success) {
+                    throw new Error(data.error || 'Erro ao gerar PIX');
+                }
+                
+                pixCode = data.pixCode;
+                transactionId = data.transactionId;
                 
                 document.getElementById('pixCode').textContent = pixCode;
                 
@@ -2223,7 +2199,11 @@
                 
             } catch (error) {
                 console.error('[v0] PIX Error:', error);
-                alert('Erro ao gerar PIX: ' + error.message + '. Tente novamente.');
+                if (error.message === 'PREVIEW_MODE') {
+                    alert('PIX so funciona apos o deploy na Vercel.\n\nClique em "Publish" no canto superior direito para fazer o deploy e usar o PIX real do SyncPay.');
+                } else {
+                    alert('Erro ao gerar PIX: ' + error.message + '. Tente novamente.');
+                }
             } finally {
                 // Restore button
                 submitBtn.disabled = false;
