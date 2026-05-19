@@ -3,8 +3,13 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "npx serve brasil-camisa-joy.lovable.app -l 3000",
-    "build": "echo 'Static site - no build needed'",
-    "start": "npx serve brasil-camisa-joy.lovable.app -l 3000"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "^15.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   }
 }

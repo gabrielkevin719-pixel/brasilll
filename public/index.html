@@ -2140,7 +2140,7 @@
         }
         
         // Process payment
-        function processPayment(event) {
+        async function processPayment(event) {
             event.preventDefault();
             
             const form = event.target;
@@ -2151,40 +2151,78 @@
                 alert('Por favor, preencha todos os campos obrigatorios.');
                 return;
             }
-
-            // Generate PIX
-            const pixCode = generatePixCode();
-            document.getElementById('pixCode').textContent = pixCode;
             
-            // Calculate total
-            const total = formatCurrency(currentProduct.price + shippingCost);
+            // Get form data
+            const customerName = formData.get('name');
+            const customerEmail = formData.get('email');
+            const customerCpf = formData.get('cpf');
             
-            // Update PIX modal
-            document.getElementById('pixProductName').textContent = currentProduct.name;
-            document.getElementById('pixSize').textContent = selectedSize;
-            document.getElementById('pixProductPrice').textContent = formatCurrency(currentProduct.price);
-            document.getElementById('pixShipping').textContent = formatCurrency(shippingCost);
-            document.getElementById('pixTotal').textContent = total;
+            // Show loading state
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<svg class="animate-spin h-5 w-5 mr-2 inline" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Gerando PIX...';
             
-            // Generate QR code pattern
-            generateQRPattern();
-            
-            // Save order to user account
-            saveOrder(currentProduct, selectedSize, total, pixCode);
-            
-            // Auto-login user if not logged in (using form email)
-            const email = formData.get('email');
-            const nome = formData.get('nome');
-            if (!localStorage.getItem('isLoggedIn')) {
-                localStorage.setItem('isLoggedIn', 'true');
-                localStorage.setItem('userEmail', email);
-                localStorage.setItem('userName', nome);
-                updateAuthUI();
+            try {
+                // Calculate total
+                const totalAmount = currentProduct.price + shippingCost;
+                
+                // Call real PIX API
+                const response = await fetch('/api/pix', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        amount: totalAmount,
+                        productName: currentProduct.name + ' (Tam: ' + selectedSize + ')',
+                        customerName: customerName,
+                        customerEmail: customerEmail,
+                        customerCpf: customerCpf,
+                    }),
+                });
+                
+                const data = await response.json();
+                
+                if (!response.ok || !data.success) {
+                    throw new Error(data.error || 'Erro ao gerar PIX');
+                }
+                
+                // Update PIX modal with real data
+                const pixCode = data.pixCode;
+                document.getElementById('pixCode').textContent = pixCode;
+                
+                const total = formatCurrency(totalAmount);
+                
+                document.getElementById('pixProductName').textContent = currentProduct.name;
+                document.getElementById('pixSize').textContent = selectedSize;
+                document.getElementById('pixProductPrice').textContent = formatCurrency(currentProduct.price);
+                document.getElementById('pixShipping').textContent = formatCurrency(shippingCost);
+                document.getElementById('pixTotal').textContent = total;
+                
+                // Use real QR code if available, otherwise generate pattern
+                if (data.qrCodeBase64) {
+                    const qrContainer = document.getElementById('qrCodeContainer');
+                    qrContainer.innerHTML = '<img src="data:image/png;base64,' + data.qrCodeBase64 + '" class="w-full h-full" alt="QR Code PIX" />';
+                } else {
+                    generateQRPattern();
+                }
+                
+                // Save order to user account
+                saveOrder(currentProduct, selectedSize, total, pixCode);
+                
+                // Close checkout and show PIX modal
+                closeAllModals();
+                document.getElementById('pixModal').classList.add('active');
+                
+            } catch (error) {
+                console.error('[v0] PIX Error:', error);
+                alert('Erro ao gerar PIX: ' + error.message + '. Tente novamente.');
+            } finally {
+                // Restore button
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
             }
-            
-            // Show PIX modal
-            closeAllModals();
-            document.getElementById('pixModal').classList.add('active');
         }
 
         // Cart Management
