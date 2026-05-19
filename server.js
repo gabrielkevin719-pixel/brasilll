@@ -32,6 +32,10 @@ envFiles.forEach(envFile => {
 
 const PORT = process.env.PORT || 3000;
 
+// Debug: Log loaded credentials (masked)
+console.log('[v0] SYNCPAY_CLIENT_ID:', process.env.SYNCPAY_CLIENT_ID ? process.env.SYNCPAY_CLIENT_ID.substring(0, 10) + '...' : 'NOT FOUND');
+console.log('[v0] SYNCPAY_CLIENT_SECRET:', process.env.SYNCPAY_CLIENT_SECRET ? process.env.SYNCPAY_CLIENT_SECRET.substring(0, 10) + '...' : 'NOT FOUND');
+
 // MIME types
 const mimeTypes = {
   '.html': 'text/html',
@@ -69,8 +73,8 @@ async function handlePixApi(req, res) {
         return res.end(JSON.stringify({ error: 'Credenciais PIX nao configuradas. Configure SYNCPAY_CLIENT_ID e SYNCPAY_CLIENT_SECRET.' }));
       }
 
-      // Get auth token
-      const authResponse = await fetch('https://api.syncpayments.com.br/auth/oauth/token', {
+      // Get auth token - CORRECT ENDPOINT
+      const authResponse = await fetch('https://api.syncpayments.com.br/api/partner/v1/auth-token', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -89,21 +93,22 @@ async function handlePixApi(req, res) {
       const authData = await authResponse.json();
       const accessToken = authData.access_token;
 
-      // Create PIX charge
-      const pixResponse = await fetch('https://api.syncpayments.com.br/api/v1/pix/cash-in', {
+      // Create PIX charge - CORRECT ENDPOINT
+      const pixResponse = await fetch('https://api.syncpayments.com.br/api/partner/v1/cash-in', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
           'Authorization': `Bearer ${accessToken}`,
         },
         body: JSON.stringify({
-          amount: Math.round(amount * 100),
+          amount: amount,
           description: productName,
-          external_id: `order_${Date.now()}`,
-          payer: {
+          client: {
             name: customerName,
+            cpf: customerCpf.replace(/\D/g, ''),
             email: customerEmail,
-            document: customerCpf.replace(/\D/g, ''),
+            phone: '11999999999',
           },
         }),
       });
@@ -116,15 +121,14 @@ async function handlePixApi(req, res) {
       }
 
       const pixData = await pixResponse.json();
+      
+      console.log('[v0] PIX Response:', JSON.stringify(pixData));
 
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({
         success: true,
-        qrCode: pixData.qr_code || pixData.qrcode,
-        qrCodeBase64: pixData.qr_code_base64 || pixData.qrcode_base64,
-        pixCode: pixData.pix_code || pixData.emv || pixData.copy_paste,
-        transactionId: pixData.id || pixData.transaction_id,
-        expiresAt: pixData.expires_at,
+        pixCode: pixData.pix_code,
+        transactionId: pixData.identifier,
       }));
 
     } catch (error) {
