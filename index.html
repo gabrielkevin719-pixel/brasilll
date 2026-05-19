@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charSet="utf-8" />
@@ -10,205 +10,194 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Inter:wght@400;500;600;700&amp;family=Instrument+Serif:ital@0;1&amp;family=JetBrains+Mono:wght@400;700&amp;display=swap" data-precedence="default" />
     <title>Camisas do Brasil | Seleção Brasileira Oficial e Retrô</title>
     <meta name="description" content="Camisas oficiais e retrô da Seleção Brasileira. Do tri de 70 ao manto 2024 — qualidade premium, frete para todo o Brasil." />
-    <meta property="og:title" content="Camisas do Brasil | Seleção Brasileira Oficial e Retrô" />
-    <meta property="og:description" content="Camisas oficiais e retrô da Seleção Brasileira. Do tri de 70 ao manto 2024 — qualidade premium, frete para todo o Brasil." />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Camisas do Brasil | Seleção Brasileira Oficial e Retrô" />
-    <meta name="twitter:description" content="Camisas oficiais e retrô da Seleção Brasileira. Do tri de 70 ao manto 2024 — qualidade premium, frete para todo o Brasil." />
-    <meta property="og:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/bca94787-eac6-42c5-a4b7-73e0dfaf38bf/id-preview-c3522d33--41e596c6-914e-4714-a64e-01215427c79a.lovable.app-1779157926722.png" />
-    <meta name="twitter:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/bca94787-eac6-42c5-a4b7-73e0dfaf38bf/id-preview-c3522d33--41e596c6-914e-4714-a64e-01215427c79a.lovable.app-1779157926722.png" />
-    <link rel="modulepreload" href="/assets/index-veYHHRf4.js" />
-    <link rel="modulepreload" href="/assets/index-DHLv2nv9.js" />
-    <link rel="modulepreload" href="/assets/SiteFooter-yLtHupPN.js" />
-    <link rel="modulepreload" href="/assets/ProductCard-BkQysK1A.js" />
     <link rel="icon" href="/favicon.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
     <style>
-        @font-face {
-            font-family: 'CameraPlainVariable';
-            src: url('https://cdn.gpteng.co/mcp-widgets/v1/fonts/CameraPlainVariable.woff2') format('woff2');
-            font-weight: 100 900;
-            font-style: normal;
-            font-display: swap;
-        }
-
-        #lovable-badge {
-            --badge-bg: #1b1b1b;
-            --badge-text: #c5c1b9;
-            --badge-text-hover: #dcdad5;
-            --badge-radius: 6px;
-            --badge-padding: 8px;
-            --badge-gap: 6px;
-            --badge-shadow: 0 0 0 1px rgba(0, 0, 0, 0.88), 0 1px 0 0 rgba(0, 0, 0, 0.04), 0 2px 2px -1px rgba(0, 0, 0, 0.08), 0 4px 4px -2px rgba(0, 0, 0, 0.08), 0 8px 8px -4px rgba(0, 0, 0, 0.08), 0 16px 16px -8px rgba(0, 0, 0, 0.08);
-            --badge-transition-duration: 0.2s;
-            --badge-transition-easing: cubic-bezier(0.16, 1, 0.32, 1);
-            --focus-color: #575ECF;
-            --focus-offset: 2px;
-            --focus-width: 2px;
+        /* Modal styles */
+        .modal-overlay {
             position: fixed;
-            bottom: 12px;
-            right: 12px;
-            height: 24px;
-            display: flex;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 9999;
+            display: none;
             align-items: center;
-            z-index: 1000000;
-            background-color: var(--badge-bg);
-            color: var(--badge-text);
-            border-radius: var(--badge-radius);
-            box-shadow: var(--badge-shadow);
-            font-size: 12px;
-            font-family: CameraPlainVariable, "CameraPlainVariable Fallback", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            font-weight: 400 !important;
-            text-transform: none !important;
-            font-feature-settings: normal !important;
-            transform: translateZ(0);
-            will-change: transform, opacity;
+            justify-content: center;
+            padding: 1rem;
+            overflow-y: auto;
         }
-
-        #lovable-badge-cta {
+        .modal-overlay.active {
             display: flex;
-            align-items: center;
-            gap: var(--badge-gap);
-            padding: 0 var(--badge-padding);
-            height: 100%;
-            color: inherit;
-            text-decoration: none;
-            white-space: nowrap;
-            border-radius: var(--badge-radius) 0 0 var(--badge-radius);
-            transition: background-color var(--badge-transition-duration) ease, color var(--badge-transition-duration) ease, transform 0.1s ease;
         }
-
-        #lovable-badge-cta:hover {
-            background: rgba(255, 255, 255, 0.04);
-            color: var(--badge-text-hover);
+        .modal-content {
+            background: #fff;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            border-radius: 4px;
         }
-
-        #lovable-badge-cta:active {
-            transform: scale(0.98);
-        }
-
-        #lovable-badge-cta:focus {
-            outline: none;
-        }
-
-        #lovable-badge-cta:focus-visible {
-            outline: var(--focus-width) solid var(--focus-color);
-            outline-offset: var(--focus-offset);
-            z-index: 1;
-        }
-
-        #lovable-badge-text {
-            line-height: 1;
-        }
-
-        #lovable-badge-divider {
-            width: 1px;
-            height: 24px;
-            background-color: rgba(255, 255, 255, 0.04);
-            flex-shrink: 0;
-        }
-
-        #lovable-badge-close {
-            width: 24px;
-            height: 24px;
-            min-width: 24px;
-            min-height: 24px;
-            cursor: pointer;
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
             background: none;
             border: none;
-            padding: 0;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 0 var(--badge-radius) var(--badge-radius) 0;
-            flex-shrink: 0;
-            transition: background-color var(--badge-transition-duration) ease, transform 0.1s ease;
         }
-
-        #lovable-badge-close:hover {
-            background: rgba(255, 255, 255, 0.04);
+        .size-btn {
+            border: 1px solid #ccc;
+            padding: 0.75rem 1.25rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: white;
+            font-weight: 500;
         }
-
-        #lovable-badge-close:active {
-            transform: scale(0.92);
+        .size-btn:hover {
+            border-color: #1a1a1a;
         }
-
-        #lovable-badge-close:focus {
+        .size-btn.selected {
+            background: #1a1a1a;
+            color: white;
+            border-color: #1a1a1a;
+        }
+        .product-btn {
+            background: #1a1a1a;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            border: none;
+            transition: background 0.2s;
+        }
+        .product-btn:hover {
+            background: #009739;
+        }
+        .product-btn-outline {
+            background: white;
+            color: #1a1a1a;
+            border: 2px solid #1a1a1a;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .product-btn-outline:hover {
+            background: #1a1a1a;
+            color: white;
+        }
+        .form-input {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 1px solid #ddd;
+            font-size: 0.875rem;
+            transition: border-color 0.2s;
+        }
+        .form-input:focus {
             outline: none;
+            border-color: #1a1a1a;
         }
-
-        #lovable-badge-close:focus-visible {
-            outline: var(--focus-width) solid var(--focus-color);
-            outline-offset: calc(var(--focus-offset) * -1);
-            z-index: 1;
+        .form-label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+            color: #333;
         }
-
-        #lovable-badge-close svg path {
-            fill: var(--badge-text);
-            transition: fill var(--badge-transition-duration) ease;
+        .form-label span {
+            color: #dc2626;
         }
-
-        #lovable-badge-close:hover svg path {
-            fill: var(--badge-text-hover);
+        .pix-code {
+            background: #f5f5f5;
+            padding: 1rem;
+            font-family: monospace;
+            font-size: 0.75rem;
+            word-break: break-all;
+            border-radius: 4px;
         }
-
-        @media (prefers-reduced-motion: reduce) {
-            #lovable-badge-cta,
-            #lovable-badge-close,
-            #lovable-badge-close svg path {
-                transition: none;
+        .step-indicator {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .step-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ddd;
+        }
+        .step-dot.active {
+            background: #009739;
+        }
+        .product-card-buttons {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        @media (max-width: 768px) {
+            .modal-content {
+                margin: 0.5rem;
             }
-            #lovable-badge-cta:active,
-            #lovable-badge-close:active {
-                transform: none;
-            }
-        }
-
-        @media (prefers-contrast: high) {
-            #lovable-badge {
-                --badge-bg: #000;
-                --badge-text: #fff;
-                --badge-text-hover: #fff;
-                border: 2px solid currentColor;
-            }
-            #lovable-badge-cta:focus-visible,
-            #lovable-badge-close:focus-visible {
-                outline-width: 3px;
+            .product-modal-grid {
+                grid-template-columns: 1fr !important;
             }
         }
     </style>
-    
 </head>
 
 <body>
-    <!--$-->
     <div class="min-h-screen bg-canvas text-ink">
         <header class="sticky top-0 z-50 border-b border-border bg-canvas/85 backdrop-blur-md">
-            <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4"><a class="font-display text-2xl uppercase tracking-tighter italic active" href="/" data-status="active" aria-current="page">Camisas do Brasil</a>
-                <nav class="hidden md:flex items-center gap-8 text-xs font-bold uppercase tracking-widest"><a class="hover:text-brasil-green transition-colors text-brasil-green" href="/" data-status="active" aria-current="page">Início</a><a href="/colecao/oficial" class="hover:text-brasil-green transition-colors">Oficial</a><a href="/colecao/retro"
-                        class="hover:text-brasil-green transition-colors">Retrô</a><a href="/historia" class="hover:text-brasil-green transition-colors">História</a></nav>
-                <div class="flex items-center gap-3"><button aria-label="Buscar" class="p-2 hover:text-brasil-green transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search size-4" aria-hidden="true"><path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle></svg></button>
-                    <button
-                        aria-label="Sacola" class="flex items-center gap-2 bg-ink text-canvas px-4 py-2 text-[10px] font-bold uppercase tracking-widest hover:bg-brasil-green transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-bag size-3.5" aria-hidden="true"><path d="M16 10a4 4 0 0 1-8 0"></path><path d="M3.103 6.034h17.794"></path><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"></path></svg>                        Sacola (0)</button>
+            <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+                <a class="font-display text-2xl uppercase tracking-tighter italic active" href="/" aria-current="page">Camisas do Brasil</a>
+                <nav class="hidden md:flex items-center gap-8 text-xs font-bold uppercase tracking-widest">
+                    <a class="hover:text-brasil-green transition-colors text-brasil-green" href="/" aria-current="page">Início</a>
+                    <a href="#lancamentos" class="hover:text-brasil-green transition-colors">Oficial</a>
+                    <a href="#retro" class="hover:text-brasil-green transition-colors">Retrô</a>
+                </nav>
+                <div class="flex items-center gap-3">
+                    <button id="cartBtn" aria-label="Sacola" class="flex items-center gap-2 bg-ink text-canvas px-4 py-2 text-[10px] font-bold uppercase tracking-widest hover:bg-brasil-green transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-3.5"><path d="M16 10a4 4 0 0 1-8 0"></path><path d="M3.103 6.034h17.794"></path><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"></path></svg>
+                        Sacola (<span id="cartCount">0</span>)
+                    </button>
                 </div>
             </div>
         </header>
+
+        <!-- Hero Section -->
         <section class="relative overflow-hidden bg-ink text-canvas">
-            <div class="absolute inset-0 opacity-30"><img src="/assets/hero-stadium-DKd5I9K0.jpg" alt="" class="h-full w-full object-cover" width="1920" height="1080" />
+            <div class="absolute inset-0 opacity-30">
+                <img src="/assets/hero-stadium-DKd5I9K0.jpg" alt="" class="h-full w-full object-cover" />
                 <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/60 to-transparent"></div>
             </div>
             <div class="relative mx-auto max-w-7xl px-6 pt-24 pb-32 grid lg:grid-cols-12 gap-12 items-center">
-                <div class="lg:col-span-7 animate-slide-up"><span class="font-mono text-[10px] font-bold uppercase tracking-[0.4em] text-brasil-yellow">Hexa em construção · Temporada 2026</span>
+                <div class="lg:col-span-7">
+                    <span class="font-mono text-[10px] font-bold uppercase tracking-[0.4em] text-brasil-yellow">Hexa em construção · Temporada 2026</span>
                     <h1 class="font-display text-[14vw] lg:text-[9rem] leading-[0.85] uppercase mt-6">Veste a <span class="italic text-brasil-yellow">Amarelinha</span></h1>
                     <p class="mt-6 max-w-md text-base lg:text-lg text-canvas/70 leading-relaxed">Das glórias de 1970 à tecnologia de 2024. Mantos oficiais e edições retrô para o torcedor que sangra verde e amarelo.</p>
-                    <div class="mt-10 flex flex-wrap gap-3"><a href="/colecao/oficial" class="inline-flex items-center gap-3 bg-brasil-yellow text-ink px-8 py-4 font-display text-lg uppercase tracking-tight hover:bg-canvas transition-colors">Comprar Oficial <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right size-5" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
-                        <a
-                            href="/colecao/retro" class="inline-flex items-center gap-3 border border-canvas/30 text-canvas px-8 py-4 font-display text-lg uppercase tracking-tight hover:bg-canvas hover:text-ink transition-colors">Coleção Retrô</a>
+                    <div class="mt-10 flex flex-wrap gap-3">
+                        <a href="#lancamentos" class="inline-flex items-center gap-3 bg-brasil-yellow text-ink px-8 py-4 font-display text-lg uppercase tracking-tight hover:bg-canvas transition-colors">Comprar Oficial <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+                        <a href="#retro" class="inline-flex items-center gap-3 border border-canvas/30 text-canvas px-8 py-4 font-display text-lg uppercase tracking-tight hover:bg-canvas hover:text-ink transition-colors">Coleção Retrô</a>
                     </div>
                 </div>
-                <div class="lg:col-span-5 relative animate-slide-up"><img src="/assets/jersey-2024-home-9RZ9xY_P.webp" alt="Camisa Oficial Brasil 2024" width="800" height="1000" class="relative z-10 w-full max-w-md mx-auto drop-shadow-[0_30px_60px_rgba(0,0,0,0.5)]" />
+                <div class="lg:col-span-5 relative">
+                    <img src="/assets/jersey-2024-home-9RZ9xY_P.webp" alt="Camisa Oficial Brasil 2024" class="relative z-10 w-full max-w-md mx-auto drop-shadow-[0_30px_60px_rgba(0,0,0,0.5)]" />
                     <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-brasil-green text-canvas px-6 py-3 z-20">
                         <p class="font-mono text-[10px] uppercase tracking-widest opacity-80">Oficial 2024</p>
                         <p class="font-display text-2xl uppercase">R$ 349,90</p>
@@ -217,320 +206,744 @@
             </div>
             <div class="relative border-t border-canvas/10 bg-ink">
                 <div class="mx-auto max-w-7xl px-6 py-5 grid grid-cols-2 md:grid-cols-4 gap-6 text-xs">
-                    <div class="flex items-center gap-3 text-canvas/70"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-truck size-4 text-brasil-yellow"
-                            aria-hidden="true"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"></path><path d="M15 18H9"></path><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"></path><circle cx="17" cy="18" r="2"></circle><circle cx="7" cy="18" r="2"></circle></svg>
-                        <span
-                            class="font-mono uppercase tracking-widest text-[10px]">Frete para todo Brasil</span>
+                    <div class="flex items-center gap-3 text-canvas/70">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="size-4 text-brasil-yellow"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"></path><path d="M15 18H9"></path><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"></path><circle cx="17" cy="18" r="2"></circle><circle cx="7" cy="18" r="2"></circle></svg>
+                        <span class="font-mono uppercase tracking-widest text-[10px]">Frete para todo Brasil</span>
                     </div>
-                    <div class="flex items-center gap-3 text-canvas/70"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check size-4 text-brasil-yellow"
-                            aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg>
-                        <span
-                            class="font-mono uppercase tracking-widest text-[10px]">Pagamento seguro</span>
+                    <div class="flex items-center gap-3 text-canvas/70">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="size-4 text-brasil-yellow"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg>
+                        <span class="font-mono uppercase tracking-widest text-[10px]">Pagamento seguro</span>
                     </div>
-                    <div class="flex items-center gap-3 text-canvas/70"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rotate-ccw size-4 text-brasil-yellow"
-                            aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg><span class="font-mono uppercase tracking-widest text-[10px]">Troca em 30 dias</span></div>
-                    <div class="flex items-center gap-3 text-canvas/70"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-award size-4 text-brasil-yellow"
-                            aria-hidden="true"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"></path><circle cx="12" cy="8" r="6"></circle></svg><span class="font-mono uppercase tracking-widest text-[10px]">Qualidade premium</span></div>
+                    <div class="flex items-center gap-3 text-canvas/70">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="size-4 text-brasil-yellow"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
+                        <span class="font-mono uppercase tracking-widest text-[10px]">Troca em 30 dias</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-canvas/70">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="size-4 text-brasil-yellow"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"></path><circle cx="12" cy="8" r="6"></circle></svg>
+                        <span class="font-mono uppercase tracking-widest text-[10px]">Qualidade premium</span>
+                    </div>
                 </div>
             </div>
         </section>
-        <section class="mx-auto max-w-7xl px-6 py-24">
+
+        <!-- Lancamentos Section -->
+        <section id="lancamentos" class="mx-auto max-w-7xl px-6 py-24">
             <div class="flex items-end justify-between border-b border-border pb-6 mb-12">
-                <div><span class="font-mono text-[10px] font-bold uppercase tracking-widest text-brasil-green">Linha Oficial</span>
+                <div>
+                    <span class="font-mono text-[10px] font-bold uppercase tracking-widest text-brasil-green">Linha Oficial</span>
                     <h2 class="font-display text-5xl md:text-6xl uppercase mt-2">Lançamentos</h2>
-                </div><a href="/colecao/oficial" class="hidden md:inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest border-b border-ink pb-1 hover:text-brasil-green hover:border-brasil-green transition-colors">Ver tudo <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right size-3.5" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a></div>
-            <div
-                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                <article class="group cursor-pointer">
-                    <div class="relative aspect-[4/5] overflow-hidden bg-muted border border-border group-hover:border-brasil-green transition-colors"><img src="/assets/jersey-2024-home-9RZ9xY_P.webp" alt="Brasil Home 2024" loading="lazy" width="800" height="1000" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" /><span class="absolute top-3 left-3 bg-ink text-canvas px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest">Mais Vendida</span>
-                        <span
-                            class="absolute top-3 right-3 bg-brasil-yellow text-ink px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest">-
-                            <!-- -->30
-                            <!-- -->%</span>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- Product 1 -->
+                <article class="group">
+                    <div class="relative aspect-[4/5] overflow-hidden bg-muted border border-border group-hover:border-brasil-green transition-colors cursor-pointer" onclick="openProductModal('brasil-home-2024')">
+                        <img src="/assets/jersey-2024-home-9RZ9xY_P.webp" alt="Brasil Home 2024" loading="lazy" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                        <span class="absolute top-3 left-3 bg-ink text-canvas px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest">Mais Vendida</span>
+                        <span class="absolute top-3 right-3 bg-brasil-yellow text-ink px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest">-30%</span>
                     </div>
-                    <div class="mt-5 flex items-start justify-between gap-4">
-                        <div class="min-w-0">
-                            <h3 class="font-display text-xl uppercase tracking-tight truncate">Brasil Home 2024</h3>
-                            <p class="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mt-1 truncate">Manto Oficial · Temporada Atual</p>
+                    <div class="mt-5">
+                        <div class="flex items-start justify-between gap-4">
+                            <div class="min-w-0">
+                                <h3 class="font-display text-xl uppercase tracking-tight truncate">Brasil Home 2024</h3>
+                                <p class="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mt-1 truncate">Manto Oficial · Temporada Atual</p>
+                            </div>
+                            <div class="text-right shrink-0">
+                                <p class="text-xs text-muted-foreground line-through">R$ 499,90</p>
+                                <p class="font-display text-xl text-brasil-green">R$ 349,90</p>
+                            </div>
                         </div>
-                        <div class="text-right shrink-0">
-                            <p class="text-xs text-muted-foreground line-through">R$ 499,90</p>
-                            <p class="font-display text-xl text-brasil-green">R$ 349,90</p>
+                        <div class="product-card-buttons">
+                            <button class="product-btn-outline flex-1" onclick="openProductModal('brasil-home-2024')">Ver Detalhes</button>
+                            <button class="product-btn flex-1" onclick="openCheckoutModal('brasil-home-2024')">Comprar Agora</button>
                         </div>
                     </div>
                 </article>
-                <article class="group cursor-pointer">
-                    <div class="relative aspect-[4/5] overflow-hidden bg-muted border border-border group-hover:border-brasil-green transition-colors"><img src="/assets/jersey-2025-N-bBGnuX.webp" alt="Brasil Edição 2025" loading="lazy" width="800" height="1000" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" /><span class="absolute top-3 left-3 bg-ink text-canvas px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest">Novo</span>
-                        <span
-                            class="absolute top-3 right-3 bg-brasil-yellow text-ink px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest">-
-                            <!-- -->27
-                            <!-- -->%</span>
+
+                <!-- Product 2 -->
+                <article class="group">
+                    <div class="relative aspect-[4/5] overflow-hidden bg-muted border border-border group-hover:border-brasil-green transition-colors cursor-pointer" onclick="openProductModal('brasil-2025')">
+                        <img src="/assets/jersey-2025-N-bBGnuX.webp" alt="Brasil Edição 2025" loading="lazy" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                        <span class="absolute top-3 left-3 bg-ink text-canvas px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest">Novo</span>
+                        <span class="absolute top-3 right-3 bg-brasil-yellow text-ink px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest">-27%</span>
                     </div>
-                    <div class="mt-5 flex items-start justify-between gap-4">
-                        <div class="min-w-0">
-                            <h3 class="font-display text-xl uppercase tracking-tight truncate">Brasil Edição 2025</h3>
-                            <p class="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mt-1 truncate">Versão Torcedor Premium</p>
+                    <div class="mt-5">
+                        <div class="flex items-start justify-between gap-4">
+                            <div class="min-w-0">
+                                <h3 class="font-display text-xl uppercase tracking-tight truncate">Brasil Edição 2025</h3>
+                                <p class="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mt-1 truncate">Versão Torcedor Premium</p>
+                            </div>
+                            <div class="text-right shrink-0">
+                                <p class="text-xs text-muted-foreground line-through">R$ 449,90</p>
+                                <p class="font-display text-xl text-brasil-green">R$ 329,90</p>
+                            </div>
                         </div>
-                        <div class="text-right shrink-0">
-                            <p class="text-xs text-muted-foreground line-through">R$ 449,90</p>
-                            <p class="font-display text-xl text-brasil-green">R$ 329,90</p>
-                        </div>
-                    </div>
-                </article>
-                <article class="group cursor-pointer">
-                    <div class="relative aspect-[4/5] overflow-hidden bg-muted border border-border group-hover:border-brasil-green transition-colors"><img src="/assets/jersey-2026-away-E1oLqLlO.jpg" alt="Brasil Away 2026" loading="lazy" width="800" height="1000" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" /><span class="absolute top-3 left-3 bg-ink text-canvas px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest">Pré-Venda</span>
-                        <span
-                            class="absolute top-3 right-3 bg-brasil-yellow text-ink px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest">-
-                            <!-- -->27
-                            <!-- -->%</span>
-                    </div>
-                    <div class="mt-5 flex items-start justify-between gap-4">
-                        <div class="min-w-0">
-                            <h3 class="font-display text-xl uppercase tracking-tight truncate">Brasil Away 2026</h3>
-                            <p class="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mt-1 truncate">Reserva Azul Marinho</p>
-                        </div>
-                        <div class="text-right shrink-0">
-                            <p class="text-xs text-muted-foreground line-through">R$ 519,90</p>
-                            <p class="font-display text-xl text-brasil-green">R$ 379,90</p>
+                        <div class="product-card-buttons">
+                            <button class="product-btn-outline flex-1" onclick="openProductModal('brasil-2025')">Ver Detalhes</button>
+                            <button class="product-btn flex-1" onclick="openCheckoutModal('brasil-2025')">Comprar Agora</button>
                         </div>
                     </div>
                 </article>
-    </div>
-    </section>
-    <section class="bg-brasil-green text-canvas px-6 py-24">
-        <div class="mx-auto max-w-7xl grid md:grid-cols-12 gap-12 items-center">
-            <div class="md:col-span-7"><span class="font-mono text-[10px] font-bold uppercase tracking-widest text-brasil-yellow">Nossa Herança</span>
-                <h2 class="font-display text-5xl md:text-7xl uppercase mt-3 leading-[0.9]">Cinco Estrelas. <br/><span class="italic">Uma Paixão.</span></h2>
-                <p class="mt-6 max-w-lg text-lg text-canvas/85 leading-relaxed">Cada camisa carrega o peso da história. 1958, 1962, 1970, 1994, 2002 — anos que viraram eternidade. Nossas edições retrô são reproduções fiéis, costuradas para preservar a memória do futebol mais bonito do mundo.</p>
-                <div class="mt-10 grid grid-cols-5 gap-4 max-w-md">
-                    <div class="border border-canvas/30 text-center py-3 font-display text-lg tracking-tight">1958</div>
-                    <div class="border border-canvas/30 text-center py-3 font-display text-lg tracking-tight">1962</div>
-                    <div class="border border-canvas/30 text-center py-3 font-display text-lg tracking-tight">1970</div>
-                    <div class="border border-canvas/30 text-center py-3 font-display text-lg tracking-tight">1994</div>
-                    <div class="border border-canvas/30 text-center py-3 font-display text-lg tracking-tight">2002</div>
+
+                <!-- Product 3 -->
+                <article class="group">
+                    <div class="relative aspect-[4/5] overflow-hidden bg-muted border border-border group-hover:border-brasil-green transition-colors cursor-pointer" onclick="openProductModal('brasil-away-2026')">
+                        <img src="/assets/jersey-2026-away-E1oLqLlO.jpg" alt="Brasil Away 2026" loading="lazy" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                        <span class="absolute top-3 left-3 bg-ink text-canvas px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest">Pré-Venda</span>
+                        <span class="absolute top-3 right-3 bg-brasil-yellow text-ink px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest">-27%</span>
+                    </div>
+                    <div class="mt-5">
+                        <div class="flex items-start justify-between gap-4">
+                            <div class="min-w-0">
+                                <h3 class="font-display text-xl uppercase tracking-tight truncate">Brasil Away 2026</h3>
+                                <p class="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mt-1 truncate">Reserva Azul Marinho</p>
+                            </div>
+                            <div class="text-right shrink-0">
+                                <p class="text-xs text-muted-foreground line-through">R$ 519,90</p>
+                                <p class="font-display text-xl text-brasil-green">R$ 379,90</p>
+                            </div>
+                        </div>
+                        <div class="product-card-buttons">
+                            <button class="product-btn-outline flex-1" onclick="openProductModal('brasil-away-2026')">Ver Detalhes</button>
+                            <button class="product-btn flex-1" onclick="openCheckoutModal('brasil-away-2026')">Comprar Agora</button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Cinco Estrelas Section -->
+        <section class="bg-brasil-green text-canvas px-6 py-24">
+            <div class="mx-auto max-w-7xl grid md:grid-cols-12 gap-12 items-center">
+                <div class="md:col-span-7">
+                    <span class="font-mono text-[10px] font-bold uppercase tracking-widest text-brasil-yellow">Nossa Herança</span>
+                    <h2 class="font-display text-5xl md:text-7xl uppercase mt-3 leading-[0.9]">Cinco Estrelas. <br/><span class="italic">Uma Paixão.</span></h2>
+                    <p class="mt-6 max-w-lg text-lg text-canvas/85 leading-relaxed">Cada camisa carrega o peso da história. 1958, 1962, 1970, 1994, 2002 — anos que viraram eternidade. Nossas edições retrô são reproduções fiéis, costuradas para preservar a memória do futebol mais bonito do mundo.</p>
+                    <div class="mt-10 grid grid-cols-5 gap-4 max-w-md">
+                        <div class="border border-canvas/30 text-center py-3 font-display text-lg tracking-tight">1958</div>
+                        <div class="border border-canvas/30 text-center py-3 font-display text-lg tracking-tight">1962</div>
+                        <div class="border border-canvas/30 text-center py-3 font-display text-lg tracking-tight">1970</div>
+                        <div class="border border-canvas/30 text-center py-3 font-display text-lg tracking-tight">1994</div>
+                        <div class="border border-canvas/30 text-center py-3 font-display text-lg tracking-tight">2002</div>
+                    </div>
+                </div>
+                <div class="md:col-span-5">
+                    <div class="bg-brasil-yellow text-ink p-10">
+                        <p class="font-mono text-[10px] uppercase tracking-widest mb-4">Manifesto</p>
+                        <p class="font-serif text-3xl leading-snug italic">&quot;Não é só uma camisa. É a armadura de um povo que transformou o futebol em arte.&quot;</p>
+                        <p class="mt-6 font-mono text-[10px] uppercase tracking-widest">— Camisas do Brasil</p>
+                    </div>
                 </div>
             </div>
-            <div class="md:col-span-5">
-                <div class="bg-brasil-yellow text-ink p-10">
-                    <p class="font-mono text-[10px] uppercase tracking-widest mb-4">Manifesto</p>
-                    <p class="font-serif text-3xl leading-snug italic">&quot;Não é só uma camisa. É a armadura de um povo que transformou o futebol em arte.&quot;</p>
-                    <p class="mt-6 font-mono text-[10px] uppercase tracking-widest">— Camisas do Brasil</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="mx-auto max-w-7xl px-6 py-24">
-        <div class="flex items-end justify-between border-b border-border pb-6 mb-12">
-            <div><span class="font-mono text-[10px] font-bold uppercase tracking-widest text-brasil-green">Coleção Retrô</span>
-                <h2 class="font-display text-5xl md:text-6xl uppercase mt-2">Relíquias</h2>
-            </div><a href="/colecao/retro" class="hidden md:inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest border-b border-ink pb-1 hover:text-brasil-green hover:border-brasil-green transition-colors">Ver tudo <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right size-3.5" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a></div>
-        <div
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            <article class="group cursor-pointer">
-                <div class="relative aspect-[4/5] overflow-hidden bg-muted border border-border group-hover:border-brasil-green transition-colors"><img src="/assets/jersey-retro-1970-BlROcD2P.jpg" alt="Retrô Tri 1970" loading="lazy" width="800" height="1000" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" /><span class="absolute top-3 left-3 bg-ink text-canvas px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest">Clássica</span>
-                    <span
-                        class="absolute top-3 right-3 bg-brasil-yellow text-ink px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest">-
-                        <!-- -->28
-                        <!-- -->%</span>
-                </div>
-                <div class="mt-5 flex items-start justify-between gap-4">
-                    <div class="min-w-0">
-                        <h3 class="font-display text-xl uppercase tracking-tight truncate">Retrô Tri 1970</h3>
-                        <p class="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mt-1 truncate">Edição Comemorativa Pelé</p>
-                    </div>
-                    <div class="text-right shrink-0">
-                        <p class="text-xs text-muted-foreground line-through">R$ 399,90</p>
-                        <p class="font-display text-xl text-brasil-green">R$ 289,90</p>
-                    </div>
-                </div>
-            </article>
-            <article class="group cursor-pointer">
-                <div class="relative aspect-[4/5] overflow-hidden bg-muted border border-border group-hover:border-brasil-green transition-colors"><img src="/assets/jersey-retro-1994-C8TSZE6B.jpg" alt="Retrô Tetra 1994" loading="lazy" width="800" height="1000" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" /><span class="absolute top-3 right-3 bg-brasil-yellow text-ink px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest">-<!-- -->26<!-- -->%</span></div>
-                <div
-                    class="mt-5 flex items-start justify-between gap-4">
-                    <div class="min-w-0">
-                        <h3 class="font-display text-xl uppercase tracking-tight truncate">Retrô Tetra 1994</h3>
-                        <p class="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mt-1 truncate">Romário &amp; Bebeto</p>
-                    </div>
-                    <div class="text-right shrink-0">
-                        <p class="text-xs text-muted-foreground line-through">R$ 379,90</p>
-                        <p class="font-display text-xl text-brasil-green">R$ 279,90</p>
-                    </div>
-                    </div>
-            </article>
-            <article class="group cursor-pointer">
-                <div class="relative aspect-[4/5] overflow-hidden bg-muted border border-border group-hover:border-brasil-green transition-colors"><img src="/assets/jersey-retro-2002-B_LmfDjS.jpg" alt="Retrô Penta 2002" loading="lazy" width="800" height="1000" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" /><span class="absolute top-3 left-3 bg-ink text-canvas px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest">Icônica</span>
-                    <span
-                        class="absolute top-3 right-3 bg-brasil-yellow text-ink px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest">-
-                        <!-- -->29
-                        <!-- -->%</span>
-                </div>
-                <div class="mt-5 flex items-start justify-between gap-4">
-                    <div class="min-w-0">
-                        <h3 class="font-display text-xl uppercase tracking-tight truncate">Retrô Penta 2002</h3>
-                        <p class="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mt-1 truncate">Ronaldo, Rivaldo, Ronaldinho</p>
-                    </div>
-                    <div class="text-right shrink-0">
-                        <p class="text-xs text-muted-foreground line-through">R$ 419,90</p>
-                        <p class="font-display text-xl text-brasil-green">R$ 299,90</p>
-                    </div>
-                </div>
-            </article>
-            </div>
-    </section>
-    <section class="bg-canvas px-6 pb-24">
-        <div class="mx-auto max-w-7xl bg-ink text-canvas px-10 py-20 text-center">
-            <h2 class="font-display text-5xl md:text-7xl uppercase">Entre para o <span class="italic text-brasil-yellow">Time</span></h2>
-            <p class="mt-4 max-w-xl mx-auto text-canvas/70">Receba lançamentos, edições limitadas e descontos exclusivos antes de todo mundo.</p>
-            <form class="mt-8 max-w-lg mx-auto flex"><input type="email" required="" placeholder="seu@email.com" class="flex-1 bg-canvas/5 border border-canvas/20 px-6 py-4 font-mono text-xs uppercase tracking-widest outline-none focus:border-brasil-yellow placeholder:text-canvas/40" />
-                <button
-                    class="bg-brasil-yellow text-ink px-8 py-4 font-display text-lg uppercase hover:bg-canvas transition-colors">Assinar</button>
-            </form>
-        </div>
-    </section>
-    <footer class="bg-ink text-canvas px-6 pt-20 pb-10 mt-20">
-        <div class="mx-auto max-w-7xl">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-10 pb-12 border-b border-canvas/10">
-                <div class="col-span-2">
-                    <h3 class="font-display text-3xl uppercase tracking-tighter italic">Camisas do Brasil</h3>
-                    <p class="mt-4 max-w-sm text-sm text-canvas/60 leading-relaxed">A maior curadoria de mantos da Seleção Brasileira. Lançamentos oficiais e edições retrô para o verdadeiro torcedor.</p>
-                    <form class="mt-6 flex max-w-sm border-b border-canvas/30 pb-2"><input type="email" placeholder="SEU E-MAIL" class="flex-1 bg-transparent text-xs uppercase tracking-widest outline-none placeholder:text-canvas/40" /><button class="text-[10px] font-bold uppercase tracking-widest hover:text-brasil-yellow">Assinar</button></form>
-                </div>
+        </section>
+
+        <!-- Retro Section -->
+        <section id="retro" class="mx-auto max-w-7xl px-6 py-24">
+            <div class="flex items-end justify-between border-b border-border pb-6 mb-12">
                 <div>
-                    <h4 class="font-mono text-[10px] font-bold uppercase tracking-widest text-brasil-yellow mb-4">Loja</h4>
-                    <ul class="space-y-2 text-sm text-canvas/70">
-                        <li><a href="#" class="hover:text-brasil-yellow">Lançamentos</a></li>
-                        <li><a href="#" class="hover:text-brasil-yellow">Coleção Retrô</a></li>
-                        <li><a href="#" class="hover:text-brasil-yellow">Oficiais 2024</a></li>
-                        <li><a href="#" class="hover:text-brasil-yellow">Acessórios</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-mono text-[10px] font-bold uppercase tracking-widest text-brasil-yellow mb-4">Suporte</h4>
-                    <ul class="space-y-2 text-sm text-canvas/70">
-                        <li><a href="#" class="hover:text-brasil-yellow">Envios</a></li>
-                        <li><a href="#" class="hover:text-brasil-yellow">Trocas</a></li>
-                        <li><a href="#" class="hover:text-brasil-yellow">Tabela de Medidas</a></li>
-                        <li><a href="#" class="hover:text-brasil-yellow">Contato</a></li>
-                    </ul>
+                    <span class="font-mono text-[10px] font-bold uppercase tracking-widest text-brasil-green">Coleção Retrô</span>
+                    <h2 class="font-display text-5xl md:text-6xl uppercase mt-2">Relíquias</h2>
                 </div>
             </div>
-            <div class="pt-8 flex flex-col md:flex-row justify-between gap-4 text-[10px] uppercase tracking-widest text-canvas/40">
-                <p>© 2026 Camisas do Brasil — Feito com paixão pela Amarelinha.</p>
-                <p>Pagamento seguro · Frete para todo o Brasil</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- Retro 1970 -->
+                <article class="group">
+                    <div class="relative aspect-[4/5] overflow-hidden bg-muted border border-border group-hover:border-brasil-green transition-colors cursor-pointer" onclick="openProductModal('retro-1970')">
+                        <img src="/assets/jersey-retro-1970-BlROcD2P.jpg" alt="Retrô Tri 1970" loading="lazy" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                        <span class="absolute top-3 left-3 bg-ink text-canvas px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest">Clássica</span>
+                        <span class="absolute top-3 right-3 bg-brasil-yellow text-ink px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest">-28%</span>
+                    </div>
+                    <div class="mt-5">
+                        <div class="flex items-start justify-between gap-4">
+                            <div class="min-w-0">
+                                <h3 class="font-display text-xl uppercase tracking-tight truncate">Retrô Tri 1970</h3>
+                                <p class="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mt-1 truncate">Edição Comemorativa Pelé</p>
+                            </div>
+                            <div class="text-right shrink-0">
+                                <p class="text-xs text-muted-foreground line-through">R$ 399,90</p>
+                                <p class="font-display text-xl text-brasil-green">R$ 289,90</p>
+                            </div>
+                        </div>
+                        <div class="product-card-buttons">
+                            <button class="product-btn-outline flex-1" onclick="openProductModal('retro-1970')">Ver Detalhes</button>
+                            <button class="product-btn flex-1" onclick="openCheckoutModal('retro-1970')">Comprar Agora</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Retro 1994 -->
+                <article class="group">
+                    <div class="relative aspect-[4/5] overflow-hidden bg-muted border border-border group-hover:border-brasil-green transition-colors cursor-pointer" onclick="openProductModal('retro-1994')">
+                        <img src="/assets/jersey-retro-1994-C8TSZE6B.jpg" alt="Retrô Tetra 1994" loading="lazy" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                        <span class="absolute top-3 right-3 bg-brasil-yellow text-ink px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest">-26%</span>
+                    </div>
+                    <div class="mt-5">
+                        <div class="flex items-start justify-between gap-4">
+                            <div class="min-w-0">
+                                <h3 class="font-display text-xl uppercase tracking-tight truncate">Retrô Tetra 1994</h3>
+                                <p class="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mt-1 truncate">Romário &amp; Bebeto</p>
+                            </div>
+                            <div class="text-right shrink-0">
+                                <p class="text-xs text-muted-foreground line-through">R$ 379,90</p>
+                                <p class="font-display text-xl text-brasil-green">R$ 279,90</p>
+                            </div>
+                        </div>
+                        <div class="product-card-buttons">
+                            <button class="product-btn-outline flex-1" onclick="openProductModal('retro-1994')">Ver Detalhes</button>
+                            <button class="product-btn flex-1" onclick="openCheckoutModal('retro-1994')">Comprar Agora</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Retro 2002 -->
+                <article class="group">
+                    <div class="relative aspect-[4/5] overflow-hidden bg-muted border border-border group-hover:border-brasil-green transition-colors cursor-pointer" onclick="openProductModal('retro-2002')">
+                        <img src="/assets/jersey-retro-2002-B_LmfDjS.jpg" alt="Retrô Penta 2002" loading="lazy" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                        <span class="absolute top-3 left-3 bg-ink text-canvas px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest">Icônica</span>
+                        <span class="absolute top-3 right-3 bg-brasil-yellow text-ink px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest">-29%</span>
+                    </div>
+                    <div class="mt-5">
+                        <div class="flex items-start justify-between gap-4">
+                            <div class="min-w-0">
+                                <h3 class="font-display text-xl uppercase tracking-tight truncate">Retrô Penta 2002</h3>
+                                <p class="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mt-1 truncate">Ronaldo, Rivaldo, Ronaldinho</p>
+                            </div>
+                            <div class="text-right shrink-0">
+                                <p class="text-xs text-muted-foreground line-through">R$ 419,90</p>
+                                <p class="font-display text-xl text-brasil-green">R$ 299,90</p>
+                            </div>
+                        </div>
+                        <div class="product-card-buttons">
+                            <button class="product-btn-outline flex-1" onclick="openProductModal('retro-2002')">Ver Detalhes</button>
+                            <button class="product-btn flex-1" onclick="openCheckoutModal('retro-2002')">Comprar Agora</button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section class="bg-canvas px-6 pb-24">
+            <div class="mx-auto max-w-7xl bg-ink text-canvas px-10 py-20 text-center">
+                <h2 class="font-display text-5xl md:text-7xl uppercase">Entre para o <span class="italic text-brasil-yellow">Time</span></h2>
+                <p class="mt-4 max-w-xl mx-auto text-canvas/70">Receba lançamentos, edições limitadas e descontos exclusivos antes de todo mundo.</p>
+                <form class="mt-8 max-w-lg mx-auto flex" onsubmit="event.preventDefault(); alert('E-mail cadastrado com sucesso!');">
+                    <input type="email" required placeholder="seu@email.com" class="flex-1 bg-canvas/5 border border-canvas/20 px-6 py-4 font-mono text-xs uppercase tracking-widest outline-none focus:border-brasil-yellow placeholder:text-canvas/40" />
+                    <button class="bg-brasil-yellow text-ink px-8 py-4 font-display text-lg uppercase hover:bg-canvas transition-colors">Assinar</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-ink text-canvas px-6 pt-20 pb-10">
+            <div class="mx-auto max-w-7xl">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-10 pb-12 border-b border-canvas/10">
+                    <div class="col-span-2">
+                        <h3 class="font-display text-3xl uppercase tracking-tighter italic">Camisas do Brasil</h3>
+                        <p class="mt-4 max-w-sm text-sm text-canvas/60 leading-relaxed">A maior curadoria de mantos da Seleção Brasileira. Lançamentos oficiais e edições retrô para o verdadeiro torcedor.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-mono text-[10px] font-bold uppercase tracking-widest text-brasil-yellow mb-4">Loja</h4>
+                        <ul class="space-y-2 text-sm text-canvas/70">
+                            <li><a href="#lancamentos" class="hover:text-brasil-yellow">Lançamentos</a></li>
+                            <li><a href="#retro" class="hover:text-brasil-yellow">Coleção Retrô</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-mono text-[10px] font-bold uppercase tracking-widest text-brasil-yellow mb-4">Suporte</h4>
+                        <ul class="space-y-2 text-sm text-canvas/70">
+                            <li><a href="#" class="hover:text-brasil-yellow">Envios</a></li>
+                            <li><a href="#" class="hover:text-brasil-yellow">Trocas</a></li>
+                            <li><a href="#" class="hover:text-brasil-yellow">Tabela de Medidas</a></li>
+                            <li><a href="#" class="hover:text-brasil-yellow">Contato</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="pt-8 flex flex-col md:flex-row justify-between gap-4 text-[10px] uppercase tracking-widest text-canvas/40">
+                    <p>© 2026 Camisas do Brasil — Feito com paixão pela Amarelinha.</p>
+                    <p>Pagamento seguro · Frete para todo o Brasil</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Product Modal -->
+    <div id="productModal" class="modal-overlay" onclick="if(event.target === this) closeAllModals()">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeAllModals()">&times;</button>
+            <div class="grid md:grid-cols-2 product-modal-grid" style="display: grid;">
+                <div class="p-6 bg-gray-50">
+                    <img id="modalProductImage" src="" alt="" class="w-full aspect-square object-cover" />
+                </div>
+                <div class="p-6 md:p-8">
+                    <span id="modalProductBadge" class="inline-block bg-brasil-yellow text-ink px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest mb-4">Novo</span>
+                    <h2 id="modalProductName" class="font-display text-2xl md:text-3xl uppercase"></h2>
+                    <p id="modalProductDesc" class="mt-2 text-gray-600"></p>
+                    
+                    <div class="mt-6">
+                        <h4 class="font-bold text-sm mb-3">Detalhes do Produto</h4>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-brasil-green" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                                Tecido Dry-Fit respirável de alta performance
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-brasil-green" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                                Gola com acabamento premium reforçado
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-brasil-green" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                                Escudo bordado em alta definição
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-brasil-green" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                                Costura dupla em todas as emendas
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-brasil-green" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                                Lavável à máquina sem deformação
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="mt-6">
+                        <label class="form-label">Tamanho <span>*</span></label>
+                        <div class="flex flex-wrap gap-2" id="modalSizeSelector">
+                            <button class="size-btn" data-size="P">P</button>
+                            <button class="size-btn" data-size="M">M</button>
+                            <button class="size-btn" data-size="G">G</button>
+                            <button class="size-btn" data-size="GG">GG</button>
+                            <button class="size-btn" data-size="XGG">XGG</button>
+                        </div>
+                    </div>
+
+                    <div class="mt-6">
+                        <p class="text-sm text-gray-400 line-through" id="modalOldPrice"></p>
+                        <p class="font-display text-3xl" id="modalPrice"></p>
+                        <p class="text-sm text-gray-500">via PIX · Envio para todo Brasil</p>
+                    </div>
+
+                    <button class="product-btn w-full mt-6 py-4 text-base flex items-center justify-center gap-2" onclick="proceedToCheckout()">
+                        Comprar Agora
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 10a4 4 0 0 1-8 0"></path><path d="M3.103 6.034h17.794"></path><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"></path></svg>
+                    </button>
+                </div>
             </div>
         </div>
-    </footer>
     </div>
-    <!--/$-->
-    <script class="$tsr" id="$tsr-stream-barrier">
-        (self.$R = self.$R || {})["tsr"] = [];
-        self.$_TSR = {
-            h() {
-                this.hydrated = !0, this.c()
-            },
-            e() {
-                this.streamEnded = !0, this.c()
-            },
-            c() {
-                this.hydrated && this.streamEnded && (delete self.$_TSR, delete self.$R.tsr)
-            },
-            p(e) {
-                this.initialized ? e() : this.buffer.push(e)
-            },
-            buffer: []
-        };
-        $_TSR.router = ($R => $R[0] = {
-            manifest: $R[1] = {
-                routes: $R[2] = {
-                    __root__: $R[3] = {
-                        preloads: $R[4] = ["/assets/index-veYHHRf4.js"],
-                        assets: $R[5] = [$R[6] = {
-                            tag: "script",
-                            attrs: $R[7] = {
-                                type: "module",
-                                async: !0
-                            },
-                            children: "import(\"/assets/index-veYHHRf4.js\")"
-                        }]
-                    },
-                    "/": $R[8] = {
-                        preloads: $R[9] = ["/assets/index-DHLv2nv9.js", "/assets/SiteFooter-yLtHupPN.js", "/assets/ProductCard-BkQysK1A.js"]
-                    }
-                }
-            },
-            matches: $R[10] = [$R[11] = {
-                i: "__root__ ",
-                u: 1779159394075,
-                s: "success",
-                ssr: !0
-            }, $R[12] = {
-                i: "  ",
-                u: 1779159394075,
-                s: "success",
-                ssr: !0
-            }],
-            lastMatchId: "  "
-        })($R["tsr"]);
-        $_TSR.e();
-        document.currentScript.remove()
-    </script>
-    <script type="module" async="">import("/assets/index-veYHHRf4.js")</script>
-    <aside id="lovable-badge" role="complementary" dir="ltr" lang="en" aria-label="Edit with Lovable">
-        <a id="lovable-badge-cta" target="_blank" href="https://lovable.dev/projects/41e596c6-914e-4714-a64e-01215427c79a?utm_source=lovable-badge" rel="noopener nofollow" aria-label="Edit with Lovable">
-		<span id="lovable-badge-text">Edit with</span>
-		<svg xmlns="http://www.w3.org/2000/svg" width="52" height="16" fill="none" viewBox="0 0 52 16">
-  <path fill="#FCFBF8" fill-rule="evenodd" d="M20.318 5.25c.643 0 1.206.14 1.69.418a2.81 2.81 0 0 1 1.118 1.191c.266.513.4 1.115.4 1.807s-.134 1.296-.4 1.812a2.81 2.81 0 0 1-1.118 1.193c-.484.278-1.047.418-1.69.418s-1.208-.14-1.695-.418a2.85 2.85 0 0 1-1.125-1.193c-.262-.516-.393-1.12-.393-1.812s.131-1.294.393-1.807a2.848 2.848 0 0 1 1.125-1.191c.487-.279 1.052-.418 1.695-.418Zm0 1.425c-.27 0-.504.076-.7.228-.193.147-.34.37-.443.67-.102.295-.153.66-.153 1.093 0 .435.05.801.153 1.1.102.3.25.524.443.676.196.147.43.22.7.22.27 0 .502-.073.694-.22.193-.152.341-.375.443-.67.103-.299.153-.667.153-1.106 0-.65-.112-1.145-.337-1.481a1.08 1.08 0 0 0-.953-.51ZM32.7 5.25c.61 0 1.127.1 1.549.3.422.197.74.48.953.849.217.368.325.809.325 1.32v2.704c0 .29.02.562.062.812.044.245.108.4.19.466V12h-1.935a5.895 5.895 0 0 1-.105-.684 7.745 7.745 0 0 1-.02-.228 2.293 2.293 0 0 1-.151.203c-.205.242-.47.437-.793.584-.32.143-.685.215-1.094.215-.406 0-.77-.08-1.094-.24a1.845 1.845 0 0 1-.756-.682 1.984 1.984 0 0 1-.27-1.045c0-.606.178-1.069.535-1.388.356-.324.87-.534 1.542-.633l1.125-.16c.225-.032.403-.074.534-.123a.622.622 0 0 0 .288-.196.549.549 0 0 0 .093-.327.65.65 0 0 0-.11-.367.702.702 0 0 0-.32-.27c-.14-.07-.31-.105-.51-.105-.32 0-.576.083-.768.251-.193.164-.298.39-.314.676h-1.923c.016-.434.147-.82.393-1.155.25-.34.596-.604 1.039-.792.442-.189.954-.283 1.535-.283Zm.99 3.498a.98.98 0 0 1-.215.14 2.49 2.49 0 0 1-.584.178l-.473.092c-.315.061-.553.156-.713.283-.155.127-.233.305-.233.534 0 .23.084.412.252.547.168.135.383.203.645.203s.494-.058.694-.173c.201-.118.355-.282.461-.49.11-.21.166-.448.166-.714v-.6Zm4.526-2.375c.065-.125.138-.243.221-.349.197-.25.437-.44.719-.571.282-.135.6-.203.952-.203.528 0 .988.138 1.377.412.389.275.688.67.896 1.186.21.512.314 1.12.314 1.824 0 .7-.107 1.309-.32 1.825-.213.512-.518.906-.915 1.18-.393.275-.854.412-1.383.412-.352 0-.667-.062-.946-.184a1.832 1.832 0 0 1-.7-.554 2.2 2.2 0 0 1-.234-.383V12h-1.843V3h1.862v3.373Zm1.284.296c-.274 0-.51.085-.707.253-.192.163-.338.397-.436.7a3.376 3.376 0 0 0-.148 1.05c0 .406.05.759.148 1.058.098.299.243.53.436.694.197.164.433.246.707.246.279 0 .512-.082.7-.246.193-.164.336-.395.43-.694.099-.3.148-.652.148-1.058 0-.405-.05-.757-.147-1.056-.095-.299-.238-.53-.43-.694a1.015 1.015 0 0 0-.7-.253Zm9.416-1.419c.602 0 1.136.131 1.604.393.466.262.829.643 1.086 1.143.263.5.394 1.097.394 1.794 0 .25-.002.449-.006.596H47.51c.018.288.071.538.164.75a1.3 1.3 0 0 0 .491.596c.214.13.465.196.757.196.319 0 .583-.082.792-.246.209-.167.34-.403.393-.706h1.862a2.48 2.48 0 0 1-.485 1.235 2.54 2.54 0 0 1-1.051.805c-.439.188-.949.283-1.53.283-.655 0-1.225-.125-1.708-.375a2.672 2.672 0 0 1-1.13-1.143c-.267-.508-.4-1.137-.4-1.887 0-.712.14-1.327.418-1.843a2.86 2.86 0 0 1 1.155-1.186c.491-.27 1.051-.405 1.678-.405Zm-.044 1.345c-.274 0-.516.068-.725.203a1.29 1.29 0 0 0-.479.59 2.045 2.045 0 0 0-.132.498h2.562a1.873 1.873 0 0 0-.138-.602 1.061 1.061 0 0 0-.418-.516 1.243 1.243 0 0 0-.67-.173Z" clip-rule="evenodd"/>
-  <path fill="#FCFBF8" d="m26.605 9.995 1.342-4.566h1.924L27.628 12h-2.07l-2.33-6.57h1.98l1.397 4.565Zm-13.013.143h2.256c1.632 0 1.421 1.837 1.418 1.861h-5.603V3h1.93v7.138Zm31.516 1.861h-1.862V3h1.862v8.999Z"/>
-  <path fill="url(#a)" fill-rule="evenodd" d="M2.7 3c1.492 0 2.7 1.192 2.7 2.663v1.012h.9c1.49 0 2.7 1.192 2.7 2.662S7.791 12 6.3 12H0V5.663C0 4.193 1.209 3 2.7 3Z" clip-rule="evenodd"/>
-  <defs>
-    <radialGradient id="a" cx="0" cy="0" r="1" gradientTransform="matrix(-1.54236 7.07838 -10.231 -2.15602 4.627 5.022)" gradientUnits="userSpaceOnUse">
-      <stop offset=".106" stop-color="#FE7B02"/>
-      <stop offset=".394" stop-color="#FE3F21"/>
-      <stop offset=".608" stop-color="#F858BC"/>
-      <stop offset=".929" stop-color="#575ECF"/>
-    </radialGradient>
-  </defs>
-</svg>
 
+    <!-- Checkout Modal -->
+    <div id="checkoutModal" class="modal-overlay" onclick="if(event.target === this) closeAllModals()">
+        <div class="modal-content" style="max-width: 600px;">
+            <button class="modal-close" onclick="closeAllModals()">&times;</button>
+            <div class="p-6 md:p-8">
+                <!-- Order Summary -->
+                <div class="flex items-start gap-4 pb-6 border-b mb-6">
+                    <img id="checkoutProductImage" src="" alt="" class="w-16 h-16 object-cover" />
+                    <div class="flex-1">
+                        <h3 id="checkoutProductName" class="font-bold"></h3>
+                        <p id="checkoutProductSize" class="text-sm text-gray-500"></p>
+                    </div>
+                    <p id="checkoutProductPrice" class="font-bold text-lg"></p>
+                </div>
 
-	</a>
+                <!-- Price Summary -->
+                <div class="space-y-2 pb-6 border-b mb-6">
+                    <div class="flex justify-between">
+                        <span>Subtotal</span>
+                        <span id="checkoutSubtotal"></span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Frete</span>
+                        <span id="checkoutShipping" class="text-gray-500">Informe o CEP abaixo</span>
+                    </div>
+                    <div class="flex justify-between font-bold text-lg pt-2">
+                        <span>Total</span>
+                        <span id="checkoutTotal"></span>
+                    </div>
+                </div>
 
-        <span id="lovable-badge-divider" aria-hidden="true"></span>
+                <h2 class="font-display text-xl uppercase mb-6">Dados para Pagamento e Entrega</h2>
 
-        <button id="lovable-badge-close" aria-label="Dismiss" title="Dismiss" type="button">
-		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16" aria-hidden="true">
-			<path d="M10.646 4.646a.5.5 0 1 1 .707.708L8.707 8l2.646 2.646a.5.5 0 1 1-.707.707L8 8.707l-2.646 2.646a.5.5 0 1 1-.708-.707L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708L8 7.293l2.646-2.647Z"/>
-		</svg>
-	</button>
-    </aside>
+                <form id="checkoutForm" onsubmit="processPayment(event)">
+                    <!-- Personal Data -->
+                    <div class="mb-6">
+                        <h4 class="font-mono text-[10px] font-bold uppercase tracking-widest mb-4">Dados Pessoais</h4>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="form-label">Nome completo <span>*</span></label>
+                                <input type="text" name="nome" class="form-input" placeholder="João da Silva" required />
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="form-label">CPF <span>*</span></label>
+                                    <input type="text" name="cpf" class="form-input" placeholder="000.000.000-00" required />
+                                </div>
+                                <div>
+                                    <label class="form-label">Telefone <span>*</span></label>
+                                    <input type="tel" name="telefone" class="form-input" placeholder="(11) 92684-1693" required />
+                                </div>
+                            </div>
+                            <div>
+                                <label class="form-label">Email <span>*</span></label>
+                                <input type="email" name="email" class="form-input" placeholder="joao@email.com" required />
+                            </div>
+                            <p class="text-xs text-gray-500">Após o pagamento, você receberá um email para criar sua senha e acessar a área exclusiva.</p>
+                        </div>
+                    </div>
+
+                    <!-- Address -->
+                    <div class="mb-6">
+                        <h4 class="font-mono text-[10px] font-bold uppercase tracking-widest mb-4">Endereço de Entrega</h4>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="form-label">CEP <span>*</span></label>
+                                <input type="text" name="cep" id="cepInput" class="form-input" placeholder="00000-000" required onblur="calculateShipping()" />
+                            </div>
+                            <div>
+                                <label class="form-label">Endereço <span>*</span></label>
+                                <input type="text" name="endereco" class="form-input" placeholder="Rua das Flores" required />
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="form-label">Número <span>*</span></label>
+                                    <input type="text" name="numero" class="form-input" placeholder="123" required />
+                                </div>
+                                <div>
+                                    <label class="form-label">Complemento</label>
+                                    <input type="text" name="complemento" class="form-input" placeholder="Apto 4" />
+                                </div>
+                            </div>
+                            <div>
+                                <label class="form-label">Bairro <span>*</span></label>
+                                <input type="text" name="bairro" class="form-input" placeholder="Centro" required />
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="form-label">Cidade <span>*</span></label>
+                                    <input type="text" name="cidade" class="form-input" placeholder="São Paulo" required />
+                                </div>
+                                <div>
+                                    <label class="form-label">Estado <span>*</span></label>
+                                    <input type="text" name="estado" class="form-input" placeholder="SP" maxlength="2" required />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="product-btn w-full py-4 text-base">
+                        Continuar para Pagamento &rarr;
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- PIX Modal -->
+    <div id="pixModal" class="modal-overlay" onclick="if(event.target === this) closeAllModals()">
+        <div class="modal-content" style="max-width: 500px;">
+            <button class="modal-close" onclick="closeAllModals()">&times;</button>
+            <div class="p-6 md:p-8 text-center">
+                <div class="w-16 h-16 bg-brasil-green rounded-full flex items-center justify-center mx-auto mb-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                </div>
+                
+                <h2 class="font-display text-2xl uppercase mb-2">Pedido Confirmado!</h2>
+                <p class="text-gray-600 mb-6">Escaneie o QR Code ou copie o código PIX para finalizar o pagamento.</p>
+
+                <!-- QR Code placeholder -->
+                <div class="bg-white border-2 border-gray-200 p-4 inline-block mb-6">
+                    <div id="qrCodeContainer" class="w-48 h-48 bg-gray-100 flex items-center justify-center">
+                        <svg id="qrCodeSvg" viewBox="0 0 100 100" class="w-full h-full"></svg>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <p class="text-sm font-bold mb-2">Código PIX Copia e Cola:</p>
+                    <div class="pix-code" id="pixCode"></div>
+                    <button onclick="copyPixCode()" class="product-btn-outline mt-3 w-full">
+                        Copiar Código PIX
+                    </button>
+                </div>
+
+                <div class="bg-gray-50 p-4 rounded text-left">
+                    <h4 class="font-bold text-sm mb-2">Resumo do Pedido</h4>
+                    <div class="text-sm space-y-1">
+                        <div class="flex justify-between">
+                            <span id="pixProductName"></span>
+                            <span id="pixProductPrice"></span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Frete</span>
+                            <span id="pixShipping"></span>
+                        </div>
+                        <div class="flex justify-between font-bold pt-2 border-t mt-2">
+                            <span>Total</span>
+                            <span id="pixTotal"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="text-xs text-gray-500 mt-6">
+                    Após a confirmação do pagamento, você receberá um e-mail com os detalhes do seu pedido e código de rastreamento.
+                </p>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // Don't show the lovable-badge if the page is in an iframe or if it's being rendered by puppeteer (screenshot service)
-        if (window.self !== window.top || navigator.userAgent.includes('puppeteer')) {
-            // the page is in an iframe
-            var badge = document.getElementById('lovable-badge');
-            if (badge) {
-                badge.style.display = 'none';
+        // Product data
+        const products = {
+            'brasil-home-2024': {
+                id: 'brasil-home-2024',
+                name: 'Brasil Home 2024',
+                desc: 'A amarelinha oficial. Tecido respirável, design moderno e o orgulho de vestir o Brasil.',
+                image: '/assets/jersey-2024-home-9RZ9xY_P.webp',
+                oldPrice: 499.90,
+                price: 349.90,
+                badge: 'Mais Vendida'
+            },
+            'brasil-2025': {
+                id: 'brasil-2025',
+                name: 'Brasil Edição 2025',
+                desc: 'O lançamento oficial 2025! Amarelinha com detalhes em verde vibrante, gola polo moderna e tecnologia Dry-Fit.',
+                image: '/assets/jersey-2025-N-bBGnuX.webp',
+                oldPrice: 449.90,
+                price: 329.90,
+                badge: 'Novo 2025'
+            },
+            'brasil-away-2026': {
+                id: 'brasil-away-2026',
+                name: 'Brasil Away 2026',
+                desc: 'A camisa reserva para a Copa do Mundo 2026. Azul marinho elegante com detalhes dourados.',
+                image: '/assets/jersey-2026-away-E1oLqLlO.jpg',
+                oldPrice: 519.90,
+                price: 379.90,
+                badge: 'Pré-Venda'
+            },
+            'retro-1970': {
+                id: 'retro-1970',
+                name: 'Retrô Tri 1970',
+                desc: 'Edição comemorativa do tricampeonato. A camisa mais icônica da história do futebol mundial.',
+                image: '/assets/jersey-retro-1970-BlROcD2P.jpg',
+                oldPrice: 399.90,
+                price: 289.90,
+                badge: 'Clássica'
+            },
+            'retro-1994': {
+                id: 'retro-1994',
+                name: 'Retrô Tetra 1994',
+                desc: 'A camisa do tetracampeonato nos EUA. Romário, Bebeto e a geração de ouro.',
+                image: '/assets/jersey-retro-1994-C8TSZE6B.jpg',
+                oldPrice: 379.90,
+                price: 279.90,
+                badge: 'Tetra'
+            },
+            'retro-2002': {
+                id: 'retro-2002',
+                name: 'Retrô Penta 2002',
+                desc: 'O manto do pentacampeonato. Ronaldo, Rivaldo, Ronaldinho e os 3 Rs.',
+                image: '/assets/jersey-retro-2002-B_LmfDjS.jpg',
+                oldPrice: 419.90,
+                price: 299.90,
+                badge: 'Icônica'
+            }
+        };
+
+        let currentProduct = null;
+        let selectedSize = null;
+        let shippingCost = 12.50;
+
+        // Format currency
+        function formatCurrency(value) {
+            return 'R$ ' + value.toFixed(2).replace('.', ',');
+        }
+
+        // Close all modals
+        function closeAllModals() {
+            document.querySelectorAll('.modal-overlay').forEach(modal => {
+                modal.classList.remove('active');
+            });
+        }
+
+        // Open product modal
+        function openProductModal(productId) {
+            const product = products[productId];
+            if (!product) return;
+
+            currentProduct = product;
+            selectedSize = null;
+
+            document.getElementById('modalProductImage').src = product.image;
+            document.getElementById('modalProductImage').alt = product.name;
+            document.getElementById('modalProductName').textContent = product.name;
+            document.getElementById('modalProductDesc').textContent = product.desc;
+            document.getElementById('modalProductBadge').textContent = product.badge;
+            document.getElementById('modalOldPrice').textContent = formatCurrency(product.oldPrice);
+            document.getElementById('modalPrice').textContent = formatCurrency(product.price);
+
+            // Reset size buttons
+            document.querySelectorAll('#modalSizeSelector .size-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+
+            document.getElementById('productModal').classList.add('active');
+        }
+
+        // Open checkout modal directly
+        function openCheckoutModal(productId) {
+            const product = products[productId];
+            if (!product) return;
+
+            currentProduct = product;
+            selectedSize = null;
+
+            // Show size selection alert
+            const size = prompt('Selecione o tamanho (P, M, G, GG, XGG):');
+            if (!size || !['P', 'M', 'G', 'GG', 'XGG'].includes(size.toUpperCase())) {
+                alert('Por favor, selecione um tamanho válido.');
+                return;
+            }
+            selectedSize = size.toUpperCase();
+
+            showCheckoutModal();
+        }
+
+        // Show checkout modal
+        function showCheckoutModal() {
+            if (!currentProduct || !selectedSize) {
+                alert('Por favor, selecione um tamanho.');
+                return;
+            }
+
+            document.getElementById('checkoutProductImage').src = currentProduct.image;
+            document.getElementById('checkoutProductName').textContent = currentProduct.name;
+            document.getElementById('checkoutProductSize').textContent = 'Tamanho: ' + selectedSize;
+            document.getElementById('checkoutProductPrice').textContent = formatCurrency(currentProduct.price);
+            document.getElementById('checkoutSubtotal').textContent = formatCurrency(currentProduct.price);
+            document.getElementById('checkoutTotal').textContent = formatCurrency(currentProduct.price + shippingCost);
+
+            closeAllModals();
+            document.getElementById('checkoutModal').classList.add('active');
+        }
+
+        // Proceed to checkout from product modal
+        function proceedToCheckout() {
+            if (!selectedSize) {
+                alert('Por favor, selecione um tamanho.');
+                return;
+            }
+            showCheckoutModal();
+        }
+
+        // Size selection
+        document.querySelectorAll('#modalSizeSelector .size-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('#modalSizeSelector .size-btn').forEach(b => b.classList.remove('selected'));
+                this.classList.add('selected');
+                selectedSize = this.dataset.size;
+            });
+        });
+
+        // Calculate shipping
+        function calculateShipping() {
+            const cep = document.getElementById('cepInput').value;
+            if (cep && cep.length >= 8) {
+                // Simulate shipping calculation
+                shippingCost = 12.50;
+                document.getElementById('checkoutShipping').textContent = formatCurrency(shippingCost);
+                document.getElementById('checkoutTotal').textContent = formatCurrency(currentProduct.price + shippingCost);
             }
         }
 
-        // Add click event listener to close button with animation
-        var closeButton = document.getElementById('lovable-badge-close');
-        if (closeButton) {
-            closeButton.addEventListener('click', function(event) {
-                event.preventDefault();
-                event.stopPropagation();
-                var badge = document.getElementById('lovable-badge');
-                if (badge) {
-                    badge.classList.add('closing');
-                    setTimeout(function() {
-                        if (badge) {
-                            badge.style.display = 'none';
-                        }
-                    }, 240);
+        // Generate simple QR code pattern
+        function generateQRPattern() {
+            const svg = document.getElementById('qrCodeSvg');
+            let pattern = '';
+            const size = 5;
+            
+            // Generate random-looking but consistent pattern
+            for (let i = 0; i < 20; i++) {
+                for (let j = 0; j < 20; j++) {
+                    if (Math.random() > 0.5 || (i < 3 && j < 3) || (i < 3 && j > 16) || (i > 16 && j < 3)) {
+                        pattern += `<rect x="${j * size}" y="${i * size}" width="${size}" height="${size}" fill="#000"/>`;
+                    }
                 }
+            }
+            
+            // Add position patterns
+            const addPositionPattern = (x, y) => {
+                pattern += `<rect x="${x}" y="${y}" width="15" height="15" fill="#000"/>`;
+                pattern += `<rect x="${x + 2.5}" y="${y + 2.5}" width="10" height="10" fill="#fff"/>`;
+                pattern += `<rect x="${x + 5}" y="${y + 5}" width="5" height="5" fill="#000"/>`;
+            };
+            
+            addPositionPattern(0, 0);
+            addPositionPattern(85, 0);
+            addPositionPattern(0, 85);
+            
+            svg.innerHTML = pattern;
+        }
+
+        // Generate PIX code
+        function generatePixCode() {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let code = '00020126580014BR.GOV.BCB.PIX0136';
+            for (let i = 0; i < 36; i++) {
+                code += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            code += '5204000053039865802BR5925CAMISAS DO BRASIL LTDA6009SAO PAULO62070503***6304';
+            for (let i = 0; i < 4; i++) {
+                code += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return code;
+        }
+
+        // Copy PIX code
+        function copyPixCode() {
+            const code = document.getElementById('pixCode').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                alert('Código PIX copiado!');
             });
         }
+
+        // Process payment
+        function processPayment(event) {
+            event.preventDefault();
+            
+            const form = event.target;
+            const formData = new FormData(form);
+            
+            // Validate form
+            if (!form.checkValidity()) {
+                alert('Por favor, preencha todos os campos obrigatórios.');
+                return;
+            }
+
+            // Generate PIX
+            const pixCode = generatePixCode();
+            document.getElementById('pixCode').textContent = pixCode;
+            
+            // Update PIX modal
+            document.getElementById('pixProductName').textContent = currentProduct.name + ' (Tam: ' + selectedSize + ')';
+            document.getElementById('pixProductPrice').textContent = formatCurrency(currentProduct.price);
+            document.getElementById('pixShipping').textContent = formatCurrency(shippingCost);
+            document.getElementById('pixTotal').textContent = formatCurrency(currentProduct.price + shippingCost);
+            
+            // Generate QR code pattern
+            generateQRPattern();
+            
+            // Show PIX modal
+            closeAllModals();
+            document.getElementById('pixModal').classList.add('active');
+        }
+
+        // Cart button (for future implementation)
+        document.getElementById('cartBtn').addEventListener('click', function() {
+            alert('Funcionalidade do carrinho em desenvolvimento. Use os botões "Comprar Agora" nos produtos.');
+        });
     </script>
 </body>
 
