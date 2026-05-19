@@ -281,6 +281,34 @@
             width: 24px;
             border-radius: 4px;
         }
+        
+        /* Desktop Carousel Styles */
+        .desktop-slide {
+            display: none;
+            animation: fadeSlide 0.5s ease;
+        }
+        .desktop-slide.active {
+            display: block;
+        }
+        .dslide-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .dslide-dot.active {
+            background: #FEDD00;
+            width: 28px;
+            border-radius: 5px;
+        }
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: scale(0.98); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
         .desktop-hero {
             display: block;
         }
@@ -415,7 +443,39 @@
                     </div>
                 </div>
                 <div class="lg:col-span-5 relative">
-                    <img src="/assets/brasil-oficial-2026.png" alt="Camisa Oficial Brasil 2026" class="relative z-10 w-full max-w-md mx-auto drop-shadow-[0_30px_60px_rgba(0,0,0,0.5)]" />
+                    <!-- Desktop Hero Carousel -->
+                    <div class="relative" id="desktopHeroCarousel">
+                        <div class="desktop-slide active" data-dslide="0">
+                            <img src="/assets/brasil-2026-model-1.jpg" alt="Camisa Brasil 2026 - Modelo" class="w-full max-w-md mx-auto rounded-lg shadow-2xl" />
+                        </div>
+                        <div class="desktop-slide" data-dslide="1">
+                            <img src="/assets/brasil-2026-model-4.jpg" alt="Camisa Brasil 2026 - Frontal" class="w-full max-w-md mx-auto rounded-lg shadow-2xl" />
+                        </div>
+                        <div class="desktop-slide" data-dslide="2">
+                            <img src="/assets/brasil-2026-model-3.jpg" alt="Camisa Brasil 2026 - Lateral" class="w-full max-w-md mx-auto rounded-lg shadow-2xl" />
+                        </div>
+                        <div class="desktop-slide" data-dslide="3">
+                            <img src="/assets/brasil-2026-model-2.jpg" alt="Camisa Brasil 2026 - Costas" class="w-full max-w-md mx-auto rounded-lg shadow-2xl" />
+                        </div>
+                        <div class="desktop-slide" data-dslide="4">
+                            <img src="/assets/brasil-2026-model-6.jpg" alt="Camisa Brasil 2026 - Detalhe" class="w-full max-w-md mx-auto rounded-lg shadow-2xl" />
+                        </div>
+                        <!-- Arrows -->
+                        <button onclick="prevDSlide()" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 z-20 bg-brasil-yellow text-ink w-10 h-10 rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                        </button>
+                        <button onclick="nextDSlide()" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 z-20 bg-brasil-yellow text-ink w-10 h-10 rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                        </button>
+                        <!-- Dots -->
+                        <div class="flex justify-center gap-2 mt-4">
+                            <button class="dslide-dot active" onclick="goToDSlide(0)"></button>
+                            <button class="dslide-dot" onclick="goToDSlide(1)"></button>
+                            <button class="dslide-dot" onclick="goToDSlide(2)"></button>
+                            <button class="dslide-dot" onclick="goToDSlide(3)"></button>
+                            <button class="dslide-dot" onclick="goToDSlide(4)"></button>
+                        </div>
+                    </div>
                     <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-brasil-green text-canvas px-6 py-3 z-20">
                         <p class="font-mono text-[10px] uppercase tracking-widest opacity-80">Oficial 2026</p>
                         <p class="font-display text-2xl uppercase">R$ 349,90</p>
@@ -2023,6 +2083,44 @@
             clearInterval(slideInterval);
             slideInterval = setInterval(nextSlide, 4000);
         }
+        
+        // Desktop Hero Carousel
+        let currentDSlide = 0;
+        const totalDSlides = 5;
+        let dSlideInterval;
+        
+        function goToDSlide(index) {
+            document.querySelectorAll('.desktop-slide').forEach((s, i) => {
+                s.classList.remove('active');
+            });
+            document.querySelectorAll('.dslide-dot').forEach((d, i) => {
+                d.classList.remove('active');
+            });
+            
+            currentDSlide = index;
+            const slides = document.querySelectorAll('.desktop-slide');
+            const dots = document.querySelectorAll('.dslide-dot');
+            if (slides[index]) slides[index].classList.add('active');
+            if (dots[index]) dots[index].classList.add('active');
+            
+            resetDSlideTimer();
+        }
+        
+        function nextDSlide() {
+            goToDSlide((currentDSlide + 1) % totalDSlides);
+        }
+        
+        function prevDSlide() {
+            goToDSlide((currentDSlide - 1 + totalDSlides) % totalDSlides);
+        }
+        
+        function resetDSlideTimer() {
+            clearInterval(dSlideInterval);
+            dSlideInterval = setInterval(nextDSlide, 5000);
+        }
+        
+        // Start desktop carousel
+        dSlideInterval = setInterval(nextDSlide, 5000);
         
         // Start carousel auto-advance
         slideInterval = setInterval(nextSlide, 4000);
