@@ -64,8 +64,8 @@ async function handlePixApi(req, res) {
     try {
       const { amount, productName, customerName, customerEmail, customerCpf } = JSON.parse(body);
       
-      const clientId = process.env.SYNCPAY_CLIENT_ID;
-      const clientSecret = process.env.SYNCPAY_CLIENT_SECRET;
+      const clientId = process.env.SYNCPAY_CLIENT_ID || '3859949a-26e5-4e26-931f-381f203eed15';
+      const clientSecret = process.env.SYNCPAY_CLIENT_SECRET || 'd3cdd8bb-299f-4f7c-9021-b3c2753f3a2f';
       
       if (!clientId || !clientSecret) {
         console.error('[SyncPay] Credenciais nao configuradas');
