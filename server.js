@@ -2,7 +2,7 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 0;
 
 // MIME types
 const mimeTypes = {
@@ -144,5 +144,6 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+  const address = server.address();
+  console.log(`Server running at http://localhost:${address.port}`);
 });
