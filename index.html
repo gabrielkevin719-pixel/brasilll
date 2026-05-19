@@ -415,22 +415,22 @@
         <!-- Mobile Hero Section with Carousel -->
         <section class="mobile-hero">
             <div class="mobile-hero-slide active" data-slide="0">
-                <img src="/assets/brasil-2026-model-1.jpg" alt="Camisa Brasil 2026 - Modelo Sentado" />
+                <img src="/assets/jordan-2026-model-1.jpg" alt="Brasil Jordan 2026 - Modelo Frontal" />
             </div>
             <div class="mobile-hero-slide" data-slide="1">
-                <img src="/assets/brasil-2026-model-4.jpg" alt="Camisa Brasil 2026 - Modelo Frontal" />
+                <img src="/assets/jordan-2026-model-2.jpg" alt="Brasil Jordan 2026 - Modelo Frontal 2" />
             </div>
             <div class="mobile-hero-slide" data-slide="2">
-                <img src="/assets/brasil-2026-model-3.jpg" alt="Camisa Brasil 2026 - Modelo Lateral" />
+                <img src="/assets/jordan-2026-model-3.jpg" alt="Brasil Jordan 2026 - Modelo Costas" />
             </div>
             <div class="mobile-hero-slide" data-slide="3">
-                <img src="/assets/brasil-2026-model-2.jpg" alt="Camisa Brasil 2026 - Modelo Costas" />
+                <img src="/assets/jordan-2026-model-4.jpg" alt="Brasil Jordan 2026 - Modelo Perfil" />
             </div>
             <div class="mobile-hero-slide" data-slide="4">
-                <img src="/assets/brasil-2026-model-5.jpg" alt="Camisa Brasil 2026 - Detalhe Costas" />
+                <img src="/assets/jordan-2026-model-5.jpg" alt="Brasil Jordan 2026 - Detalhe Escudo" />
             </div>
             <div class="mobile-hero-slide" data-slide="5">
-                <img src="/assets/brasil-2026-model-6.jpg" alt="Camisa Brasil 2026 - Detalhe Escudo CBF" />
+                <img src="/assets/jordan-2026-model-6.jpg" alt="Brasil Jordan 2026 - Detalhe Tecido" />
             </div>
             <div class="mobile-hero-dots">
                 <button class="mobile-hero-dot active" data-dot="0" onclick="goToSlide(0)"></button>
@@ -462,19 +462,22 @@
                     <!-- Desktop Hero Carousel -->
                     <div class="relative" id="desktopHeroCarousel">
                         <div class="desktop-slide active" data-dslide="0">
-                            <img src="/assets/brasil-2026-model-1.jpg" alt="Camisa Brasil 2026 - Modelo" class="w-full max-w-md mx-auto rounded-lg shadow-2xl" />
+                            <img src="/assets/jordan-2026-model-1.jpg" alt="Brasil Jordan 2026 - Modelo" class="w-full max-w-md mx-auto rounded-lg shadow-2xl" />
                         </div>
                         <div class="desktop-slide" data-dslide="1">
-                            <img src="/assets/brasil-2026-model-4.jpg" alt="Camisa Brasil 2026 - Frontal" class="w-full max-w-md mx-auto rounded-lg shadow-2xl" />
+                            <img src="/assets/jordan-2026-model-2.jpg" alt="Brasil Jordan 2026 - Frontal" class="w-full max-w-md mx-auto rounded-lg shadow-2xl" />
                         </div>
                         <div class="desktop-slide" data-dslide="2">
-                            <img src="/assets/brasil-2026-model-3.jpg" alt="Camisa Brasil 2026 - Lateral" class="w-full max-w-md mx-auto rounded-lg shadow-2xl" />
+                            <img src="/assets/jordan-2026-model-3.jpg" alt="Brasil Jordan 2026 - Costas" class="w-full max-w-md mx-auto rounded-lg shadow-2xl" />
                         </div>
                         <div class="desktop-slide" data-dslide="3">
-                            <img src="/assets/brasil-2026-model-2.jpg" alt="Camisa Brasil 2026 - Costas" class="w-full max-w-md mx-auto rounded-lg shadow-2xl" />
+                            <img src="/assets/jordan-2026-model-4.jpg" alt="Brasil Jordan 2026 - Perfil" class="w-full max-w-md mx-auto rounded-lg shadow-2xl" />
                         </div>
                         <div class="desktop-slide" data-dslide="4">
-                            <img src="/assets/brasil-2026-model-6.jpg" alt="Camisa Brasil 2026 - Detalhe" class="w-full max-w-md mx-auto rounded-lg shadow-2xl" />
+                            <img src="/assets/jordan-2026-model-5.jpg" alt="Brasil Jordan 2026 - Detalhe Escudo" class="w-full max-w-md mx-auto rounded-lg shadow-2xl" />
+                        </div>
+                        <div class="desktop-slide" data-dslide="5">
+                            <img src="/assets/jordan-2026-model-6.jpg" alt="Brasil Jordan 2026 - Detalhe Tecido" class="w-full max-w-md mx-auto rounded-lg shadow-2xl" />
                         </div>
                         <!-- Arrows -->
                         <button onclick="prevDSlide()" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 z-20 bg-brasil-yellow text-ink w-10 h-10 rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-lg">
@@ -490,11 +493,12 @@
                             <button class="dslide-dot" onclick="goToDSlide(2)"></button>
                             <button class="dslide-dot" onclick="goToDSlide(3)"></button>
                             <button class="dslide-dot" onclick="goToDSlide(4)"></button>
+                            <button class="dslide-dot" onclick="goToDSlide(5)"></button>
                         </div>
                     </div>
                     <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-brasil-green text-canvas px-6 py-3 z-20">
-                        <p class="font-mono text-[10px] uppercase tracking-widest opacity-80">Oficial 2026</p>
-                        <p class="font-display text-2xl uppercase">R$ 349,90</p>
+                        <p class="font-mono text-[10px] uppercase tracking-widest opacity-80">Jordan 2026</p>
+                        <p class="font-display text-2xl uppercase">R$ 449,90</p>
                     </div>
                 </div>
             </div>
@@ -2142,7 +2146,7 @@
         
         // Desktop Hero Carousel
         let currentDSlide = 0;
-        const totalDSlides = 5;
+        const totalDSlides = 6;
         let dSlideInterval;
         
         function goToDSlide(index) {
