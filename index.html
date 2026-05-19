@@ -234,18 +234,102 @@
                 padding-bottom: env(safe-area-inset-bottom);
             }
         }
+        
+        /* Mobile Hero Carousel Styles */
+        .mobile-hero {
+            display: none;
+            position: relative;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        .mobile-hero-slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .mobile-hero-slide.active {
+            opacity: 1;
+        }
+        .mobile-hero-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .mobile-hero-dots {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+            z-index: 20;
+        }
+        .mobile-hero-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.4);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .mobile-hero-dot.active {
+            background: white;
+            width: 24px;
+            border-radius: 4px;
+        }
+        .desktop-hero {
+            display: block;
+        }
+        .mobile-header {
+            display: none;
+        }
+        .desktop-header {
+            display: flex;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-hero {
+                display: block;
+            }
+            .desktop-hero {
+                display: none;
+            }
+            .mobile-header {
+                display: flex;
+            }
+            .desktop-header {
+                display: none;
+            }
+        }
     </style>
 </head>
 
 <body>
     <div class="min-h-screen bg-canvas text-ink">
-        <header class="sticky top-0 z-50 border-b border-border bg-canvas/85 backdrop-blur-md">
+        <!-- Mobile Header -->
+        <header class="mobile-header sticky top-0 z-50 bg-transparent">
+            <div class="flex items-center justify-between px-4 py-3">
+                <div class="flex items-center gap-2 text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-brasil-yellow"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                    <span class="text-xs font-medium">Estoque limitado</span>
+                </div>
+                <button class="flex items-center gap-2 text-white text-xs font-medium">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="5"></circle><path d="M20 21a8 8 0 1 0-16 0"></path></svg>
+                    Entrar
+                </button>
+            </div>
+        </header>
+        
+        <!-- Desktop Header -->
+        <header class="desktop-header sticky top-0 z-50 border-b border-border bg-canvas/85 backdrop-blur-md">
             <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
                 <a class="font-display text-2xl uppercase tracking-tighter italic active" href="/" aria-current="page">Camisas do Brasil</a>
                 <nav class="hidden md:flex items-center gap-8 text-xs font-bold uppercase tracking-widest">
-                    <a class="hover:text-brasil-green transition-colors text-brasil-green" href="/" aria-current="page">Início</a>
+                    <a class="hover:text-brasil-green transition-colors text-brasil-green" href="/" aria-current="page">Inicio</a>
                     <a href="#lancamentos" class="hover:text-brasil-green transition-colors">Oficial</a>
-                    <a href="#retro" class="hover:text-brasil-green transition-colors">Retrô</a>
+                    <a href="#retro" class="hover:text-brasil-green transition-colors">Retro</a>
                 </nav>
                 <div class="flex items-center gap-3">
                     <button id="cartBtn" aria-label="Sacola" class="flex items-center gap-2 bg-ink text-canvas px-4 py-2 text-[10px] font-bold uppercase tracking-widest hover:bg-brasil-green transition-colors">
@@ -256,8 +340,26 @@
             </div>
         </header>
 
-        <!-- Hero Section -->
-        <section class="relative overflow-hidden bg-ink text-canvas">
+        <!-- Mobile Hero Section with Carousel -->
+        <section class="mobile-hero">
+            <div class="mobile-hero-slide active" data-slide="0">
+                <img src="/assets/hero-mobile-3.webp" alt="Camisa Brasil Premium" />
+            </div>
+            <div class="mobile-hero-slide" data-slide="1">
+                <img src="/assets/hero-mobile-2.webp" alt="Camisa Brasil Away" />
+            </div>
+            <div class="mobile-hero-slide" data-slide="2">
+                <img src="/assets/hero-mobile-1.webp" alt="Camisa Brasil Especial" />
+            </div>
+            <div class="mobile-hero-dots">
+                <button class="mobile-hero-dot active" data-dot="0" onclick="goToSlide(0)"></button>
+                <button class="mobile-hero-dot" data-dot="1" onclick="goToSlide(1)"></button>
+                <button class="mobile-hero-dot" data-dot="2" onclick="goToSlide(2)"></button>
+            </div>
+        </section>
+
+        <!-- Desktop Hero Section -->
+        <section class="desktop-hero relative overflow-hidden bg-ink text-canvas">
             <div class="absolute inset-0 opacity-30">
                 <img src="/assets/hero-stadium-DKd5I9K0.jpg" alt="" class="h-full w-full object-cover" />
                 <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/60 to-transparent"></div>
@@ -1147,6 +1249,72 @@
             if (telInput) telInput.addEventListener('input', function() { maskPhone(this); });
             if (cepInput) cepInput.addEventListener('input', function() { maskCEP(this); });
         });
+        
+        // Mobile Hero Carousel
+        let currentSlide = 0;
+        const totalSlides = 3;
+        let slideInterval;
+        
+        function goToSlide(index) {
+            // Remove active from all slides and dots
+            document.querySelectorAll('.mobile-hero-slide').forEach(slide => {
+                slide.classList.remove('active');
+            });
+            document.querySelectorAll('.mobile-hero-dot').forEach(dot => {
+                dot.classList.remove('active');
+            });
+            
+            // Add active to current slide and dot
+            currentSlide = index;
+            document.querySelector(`.mobile-hero-slide[data-slide="${index}"]`).classList.add('active');
+            document.querySelector(`.mobile-hero-dot[data-dot="${index}"]`).classList.add('active');
+            
+            // Reset auto-advance timer
+            resetSlideTimer();
+        }
+        
+        function nextSlide() {
+            goToSlide((currentSlide + 1) % totalSlides);
+        }
+        
+        function resetSlideTimer() {
+            clearInterval(slideInterval);
+            slideInterval = setInterval(nextSlide, 4000);
+        }
+        
+        // Start carousel auto-advance
+        slideInterval = setInterval(nextSlide, 4000);
+        
+        // Touch swipe support for mobile hero
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        const mobileHero = document.querySelector('.mobile-hero');
+        if (mobileHero) {
+            mobileHero.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+            
+            mobileHero.addEventListener('touchend', function(e) {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, { passive: true });
+        }
+        
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    // Swipe left - next slide
+                    goToSlide((currentSlide + 1) % totalSlides);
+                } else {
+                    // Swipe right - previous slide
+                    goToSlide((currentSlide - 1 + totalSlides) % totalSlides);
+                }
+            }
+        }
     </script>
 </body>
 
