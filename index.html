@@ -310,9 +310,6 @@
         }
         
         /* Modal Carousel Styles */
-        .modal-carousel-img {
-            transition: opacity 0.3s ease;
-        }
         .modal-dot {
             width: 8px;
             height: 8px;
@@ -1384,12 +1381,7 @@
             currentModalImageIndex = index;
             
             const img = document.getElementById('modalProductImage');
-            img.style.opacity = '0';
-            
-            setTimeout(() => {
-                img.src = modalImages[index];
-                img.style.opacity = '1';
-            }, 150);
+            img.src = modalImages[index];
             
             // Update dots
             document.querySelectorAll('.modal-dot').forEach((dot, i) => {
