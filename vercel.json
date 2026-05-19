@@ -1,5 +1,4 @@
 {
-  "outputDirectory": "brasil-camisa-joy.lovable.app",
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ],
