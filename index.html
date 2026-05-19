@@ -2150,12 +2150,14 @@
                 // SyncPay credentials
                 const CLIENT_ID = '3859949a-26e5-4e26-931f-381f203eed15';
                 const CLIENT_SECRET = 'd3cdd8bb-299f-4f7c-9021-b3c2753f3a2f';
-                const CORS_PROXY = 'https://corsproxy.io/?';
                 
-                // Step 1: Get auth token
-                const authResponse = await fetch(CORS_PROXY + encodeURIComponent('https://api.syncpayments.com.br/api/partner/v1/auth-token'), {
+                // Step 1: Get auth token via proxy that supports POST
+                const authResponse = await fetch('https://proxy.cors.sh/https://api.syncpayments.com.br/api/partner/v1/auth-token', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'x-cors-api-key': 'temp_' + Date.now()
+                    },
                     body: JSON.stringify({
                         client_id: CLIENT_ID,
                         client_secret: CLIENT_SECRET
@@ -2170,11 +2172,12 @@
                 const accessToken = authData.access_token;
                 
                 // Step 2: Create PIX charge
-                const pixResponse = await fetch(CORS_PROXY + encodeURIComponent('https://api.syncpayments.com.br/api/partner/v1/cash-in'), {
+                const pixResponse = await fetch('https://proxy.cors.sh/https://api.syncpayments.com.br/api/partner/v1/cash-in', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': 'Bearer ' + accessToken
+                        'Authorization': 'Bearer ' + accessToken,
+                        'x-cors-api-key': 'temp_' + Date.now()
                     },
                     body: JSON.stringify({
                         amount: totalAmount,
